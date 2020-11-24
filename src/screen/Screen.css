@@ -1,0 +1,55 @@
+.MuiOutlinedInput-root,
+.MuiFilledInput-root {
+  height: 50px;
+  width: inherit;
+  padding: 7px;
+}
+.exp .MuiOutlinedInput-root {
+  height: 30px;
+  width: 50px;
+}
+.MuiFilledInput-inputMarginDense {
+  padding-top: 13px !important;
+  padding-bottom: 16px !important;
+}
+.MuiFilledInput-input {
+  padding: unset !important;
+}
+.section8 .MuiFilledInput-root {
+  height: 50px;
+  width: 150px;
+  padding-left: 10px;
+}
+.section7 {
+  width: 57%;
+}
+.MuiInputBase-root {
+  height: auto;
+}
+@media screen and (min-width: 768px) {
+  .section7 {
+    width: 57%;
+  }
+}
+@media screen and (max-width: 768px) {
+  .R1,
+  .R2 {
+    transform: rotateZ(120deg);
+  }
+}
+@media screen and (max-width: 425px) {
+  .R1,
+  .R2 {
+    transform: rotateZ(90deg);
+    margin-bottom: 10px;
+    margin-top: 10px;
+  }
+  .section7 {
+    width: unset;
+  }
+}
+@media screen and (max-width: 424px) {
+  .MuiInputBase-root {
+    width: fit-content;
+  }
+}
