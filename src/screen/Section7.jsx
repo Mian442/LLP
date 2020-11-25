@@ -452,25 +452,51 @@ const Section7 = (props) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "flex-end",
-        }}
-        onClick={() => {
-          firebase.default
-            .firestore()
-            .collection(auth.uid)
-            .doc("section7")
-            .set(state)
-            .then((res) => {
-              toast.success("Section added");
-              props.history.push("/daily");
-            });
         }}
       >
-        <img
-          src="/right-arrow.png"
-          alt="next"
-          style={{ width: 75, height: 45 }}
-        />
+        <div
+          style={{
+            display: "flex",
+            transform: "rotateZ(180deg)",
+          }}
+          onClick={() => {
+            props.history.push("/keywords");
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%",
+          }}
+          onClick={() => {
+            if (state.profile_photo !== null) {
+              firebase.default
+                .firestore()
+                .collection(auth.uid)
+                .doc("section7")
+                .set(state)
+                .then((res) => {
+                  toast.success("Section added");
+                  props.history.push("/daily");
+                });
+            } else {
+              toast.error("Profile Pic not found");
+            }
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
       </div>
     </div>
   );

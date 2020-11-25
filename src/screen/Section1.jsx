@@ -10,28 +10,29 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
+import * as Yup from "yup";
 
 const PaymentScreen = (props) => {
   const [state, setState] = React.useState({
     country: "",
-    FName: "",
-    LName: "",
-    BAL1: "",
-    BAL2: "",
-    State: "",
-    zipcode: "",
+    full_name: "",
+    last_name: "",
+    billing_address_line_1: "",
+    billing_address_line_2: "",
+    credit_number: null,
+    state: "",
+    zip_code: "",
     email: "",
     mm: "",
     yy: "",
     csc: "",
     city: "",
     ph: "",
-    plan: "",
+    plan: { amount: 0, type: "" },
   });
   const [auth, setAuth] = useState();
   const handleChange = (event) => {
     const name = event.target.name;
-    console.log(name);
     setState({
       ...state,
       [name]: event.target.value,
@@ -46,6 +47,27 @@ const PaymentScreen = (props) => {
         setAuth(user);
       }
     });
+  });
+
+  const sectionschema = Yup.object({
+    country: Yup.string().required(),
+    full_name: Yup.string().required(),
+    last_name: Yup.string().required(),
+    credit_number: Yup.number().required(),
+    mm: Yup.number().required(),
+    yy: Yup.number().required(),
+    csc: Yup.number().required(),
+    billing_address_line_1: Yup.string().required(),
+    billing_address_line_2: Yup.string().required(),
+    city: Yup.string().required(),
+    state: Yup.string().required(),
+    zip_code: Yup.number().required(),
+    ph: Yup.number().required(),
+    email: Yup.string().required(),
+    plan: Yup.object({
+      amount: Yup.number().required(),
+      type: Yup.string().required(),
+    }).required(),
   });
 
   const form = [
@@ -80,11 +102,11 @@ const PaymentScreen = (props) => {
           id="outlined-basic"
           variant="outlined"
           size="small"
-          value={state.FName}
+          value={state.full_name}
           onChange={handleChange}
           inputProps={{
-            name: "FName",
-            id: "outlined-Fname-native-simple",
+            name: "full_name",
+            id: "outlined-full_name-native-simple",
           }}
         />
       ),
@@ -96,11 +118,11 @@ const PaymentScreen = (props) => {
           id="outlined-basic"
           variant="outlined"
           size="small"
-          value={state.LName}
+          value={state.last_name}
           onChange={handleChange}
           inputProps={{
-            name: "LName",
-            id: "outlined-Lname-native-simple",
+            name: "last_name",
+            id: "outlined-last_name-native-simple",
           }}
         />
       ),
@@ -112,11 +134,11 @@ const PaymentScreen = (props) => {
           id="outlined-basic"
           variant="outlined"
           size="small"
-          value={state.CN}
+          value={state.credit_number}
           onChange={handleChange}
           inputProps={{
-            name: "CN",
-            id: "outlined-cn-native-simple",
+            name: "credit_number",
+            id: "outlined-credit_number-native-simple",
           }}
         />
       ),
@@ -200,11 +222,11 @@ const PaymentScreen = (props) => {
           id="outlined-basic"
           variant="outlined"
           size="small"
-          value={state.BAL1}
+          value={state.billing_address_line_1}
           onChange={handleChange}
           inputProps={{
-            name: "BAL1",
-            id: "outlined-BAL1-native-simple",
+            name: "billing_address_line_1",
+            id: "outlined-billing_address_line_1-native-simple",
           }}
         />
       ),
@@ -217,11 +239,11 @@ const PaymentScreen = (props) => {
           id="outlined-basic"
           variant="outlined"
           size="small"
-          value={state.BAL2}
+          value={state.billing_address_line_2}
           onChange={handleChange}
           inputProps={{
-            name: "BAL2",
-            id: "outlined-BAL2-native-simple",
+            name: "billing_address_line_2",
+            id: "outlined-billing_address_line_2-native-simple",
           }}
         />
       ),
@@ -249,10 +271,10 @@ const PaymentScreen = (props) => {
           <Select
             native
             style={{ height: 30, width: 120 }}
-            value={state.State}
+            value={state.state}
             onChange={handleChange}
             inputProps={{
-              name: "State",
+              name: "state",
               id: "outlined-state-native-simple",
             }}
           >
@@ -271,11 +293,11 @@ const PaymentScreen = (props) => {
           id="outlined-basic"
           variant="outlined"
           size="small"
-          value={state.zipcode}
+          value={state.zip_code}
           onChange={handleChange}
           inputProps={{
-            name: "zipcode",
-            id: "outlined-zipcode-native-simple",
+            name: "zip_code",
+            id: "outlined-zip_code-native-simple",
           }}
         />
       ),
@@ -351,17 +373,15 @@ const PaymentScreen = (props) => {
         </Typography>
       </div>
       <div style={{ display: "flex", flexDirection: "row" }}>
-        <div style={{ flexGrow: 2 }}>
+        <div style={{ flexGrow: 4 }}>
           {form.map((item, index) => (
             <div
               key={index}
               style={{
                 display: "flex",
                 flexDirection: "row",
+                margin: 10,
                 alignItems: "center",
-                justifyContent: "space-between",
-                flexGrow: 2,
-                margin: 20,
               }}
             >
               <Typography
@@ -375,6 +395,8 @@ const PaymentScreen = (props) => {
               <div
                 style={{
                   flexGrow: 2,
+                  display: "flex",
+                  flexDirection: "column",
                 }}
               >
                 <Typography>{item.label}</Typography>
@@ -384,7 +406,14 @@ const PaymentScreen = (props) => {
                   </Typography>
                 )}
               </div>
-              {item.component}
+              <div
+                style={{
+                  display: "flex",
+                  justifyContent: "flex-end",
+                }}
+              >
+                {item.component}
+              </div>
             </div>
           ))}
           <div
@@ -420,14 +449,18 @@ const PaymentScreen = (props) => {
             </Typography>
             <div
               style={{
-                borderColor: "#3d5afe",
+                borderColor: "#2F528F",
                 borderWidth: 1,
                 borderStyle: "solid",
-                background: "#bbdefb",
+                background: "#DAE3F3",
                 borderRadius: 7,
                 padding: 10,
+                cursor: "pointer",
               }}
               onClick={() => {
+                toast.info(
+                  " Monthly Recurring Payments = $40/month is selected"
+                );
                 setState({
                   ...state,
                   plan: { amount: 40, type: "Monthly Plan" },
@@ -440,15 +473,17 @@ const PaymentScreen = (props) => {
             </div>
             <div
               style={{
-                borderColor: "#3d5afe",
+                borderColor: "#2F528F",
                 borderWidth: 1,
                 borderStyle: "solid",
-                background: "#bbdefb",
+                background: "#DAE3F3",
                 borderRadius: 7,
                 padding: 10,
                 marginTop: 30,
+                cursor: "pointer",
               }}
               onClick={() => {
+                toast.info("One Time Annual Payment = 400/yr is selected");
                 setState({
                   ...state,
                   plan: { amount: 400, type: "Year Plan" },
@@ -471,25 +506,55 @@ const PaymentScreen = (props) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "flex-end",
-        }}
-        onClick={() => {
-          firebase.default
-            .firestore()
-            .collection(auth.uid)
-            .doc("section2")
-            .set(state)
-            .then((res) => {
-              toast.success("Section added");
-              props.history.push("/categories");
-            });
         }}
       >
-        <img
-          src="/right-arrow.png"
-          alt="next"
-          style={{ width: 75, height: 45 }}
-        />
+        <div
+          style={{
+            display: "flex",
+            transform: "rotateZ(180deg)",
+          }}
+          onClick={() => {
+            props.history.push("/payment-information");
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%",
+          }}
+          onClick={() => {
+            sectionschema
+              .validate(state, { abortEarly: false })
+              .then((u) => {
+                firebase.default
+                  .firestore()
+                  .collection(auth.uid)
+                  .doc("section2")
+                  .set(u)
+                  .then((res) => {
+                    toast.success("Section added");
+                    props.history.push("/categories");
+                  });
+              })
+              .catch((err) => {
+                console.log(err);
+                toast.error(err.errors[0]);
+              });
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
       </div>
     </div>
   );

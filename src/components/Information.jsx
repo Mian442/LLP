@@ -32,20 +32,20 @@ const Information = (props) => {
       )}
       <div
         style={{
-          backgroundColor: "#ffecb3",
+          backgroundColor: "#fffbee",
           display: "flex",
           justifyContent: "center",
           flexDirection: "column",
           alignItems: "center",
-          padding: 25,
+          padding: 5,
         }}
       >
         <div
           style={{
-            borderColor: "#3d5afe",
+            borderColor: "#2F528F",
             borderWidth: 1,
             borderStyle: "solid",
-            background: "#bbdefb",
+            background: "#DAE3F3",
             borderRadius: 7,
             padding: 10,
           }}

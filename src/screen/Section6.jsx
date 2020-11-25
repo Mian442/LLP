@@ -59,7 +59,7 @@ const Section6 = (props) => {
         <Typography style={{ fontWeight: "bold" }}>
           Additional Keyword Tracking
         </Typography>
-        <Typography>
+        <Typography style={{ color: "#A8A6B4" }}>
           Your location’s rankings will be monitored when people search for
           these terms or phrases
         </Typography>
@@ -245,25 +245,51 @@ const Section6 = (props) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "flex-end",
-        }}
-        onClick={() => {
-          firebase.default
-            .firestore()
-            .collection(auth.uid)
-            .doc("section6")
-            .set(state)
-            .then((res) => {
-              toast.success("Section added");
-              props.history.push("/additional");
-            });
         }}
       >
-        <img
-          src="/right-arrow.png"
-          alt="next"
-          style={{ width: 75, height: 45 }}
-        />
+        <div
+          style={{
+            display: "flex",
+            transform: "rotateZ(180deg)",
+          }}
+          onClick={() => {
+            props.history.push("/cover");
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%",
+          }}
+          onClick={() => {
+            if (state) {
+              firebase.default
+                .firestore()
+                .collection(auth.uid)
+                .doc("section6")
+                .set(state)
+                .then((res) => {
+                  toast.success("Section added");
+                  props.history.push("/additional");
+                });
+            } else {
+              props.history.push("/additional");
+            }
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
       </div>
     </div>
   );

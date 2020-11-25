@@ -50,15 +50,15 @@ const Section5 = (props) => {
       component: (
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            width: "100%",
             borderWidth: 1,
             borderColor: "#9e9e9e",
             borderStyle: "solid",
           }}
         >
-          <div style={{ margin: 20, width: "93%", flexDirection: "row" }}>
+          <div
+            style={{ margin: 20, display: "flex", justifyContent: "center" }}
+          >
             <input
               accept="image/*"
               style={{ display: "none" }}
@@ -173,7 +173,6 @@ const Section5 = (props) => {
                 color="primary"
                 aria-label="upload picture"
                 component="span"
-                size="xlarge"
               >
                 <Add
                   style={{
@@ -341,25 +340,51 @@ const Section5 = (props) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "flex-end",
-        }}
-        onClick={() => {
-          firebase.default
-            .firestore()
-            .collection(auth.uid)
-            .doc("section5")
-            .set(state)
-            .then((res) => {
-              toast.success("Section added");
-              props.history.push("/keywords");
-            });
         }}
       >
-        <img
-          src="/right-arrow.png"
-          alt="next"
-          style={{ width: 75, height: 45 }}
-        />
+        <div
+          style={{
+            display: "flex",
+            transform: "rotateZ(180deg)",
+          }}
+          onClick={() => {
+            props.history.push("/business_description");
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%",
+          }}
+          onClick={() => {
+            if (state.set_logo !== null) {
+              firebase.default
+                .firestore()
+                .collection(auth.uid)
+                .doc("section5")
+                .set(state)
+                .then((res) => {
+                  toast.success("Section added");
+                  props.history.push("/keywords");
+                });
+            } else {
+              toast.error("Photo not found");
+            }
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
       </div>
     </div>
   );

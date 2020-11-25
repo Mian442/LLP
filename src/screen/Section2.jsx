@@ -3,6 +3,7 @@ import "./Screen.css";
 import React, { useEffect, useState } from "react";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
+import * as Yup from "yup";
 
 const PaymentInformation = (props) => {
   const [state, setState] = React.useState({
@@ -15,17 +16,34 @@ const PaymentInformation = (props) => {
     suite: "",
     city: "",
     business_phone: "",
+    Username: "",
+    Password: "",
+    CPassword: "",
   });
   const [auth, setAuth] = useState();
 
   const handleChange = (event) => {
     const name = event.target.name;
-    console.log(name);
     setState({
       ...state,
       [name]: event.target.value,
     });
   };
+
+  const sectionschema = Yup.object({
+    Username: Yup.string().email().required(),
+    Password: Yup.string().min(6).required(),
+    CPassword: Yup.string().min(6).required(),
+    owner_name: Yup.string().required(),
+    business_name: Yup.string().required(),
+    business_email: Yup.string().email().required(),
+    business_phone: Yup.number().required(),
+    business_address: Yup.string(),
+    suite: Yup.string(),
+    city: Yup.string(),
+    zip: Yup.number().required(),
+    state: Yup.string(),
+  });
 
   useEffect(() => {
     firebase.default.auth().onAuthStateChanged((user) => {
@@ -150,19 +168,7 @@ const PaymentInformation = (props) => {
       ),
     },
     {
-      label: (
-        <Typography>
-          Business Address
-          <span
-            style={{
-              color: "#ff1744",
-              marginRight: 30,
-            }}
-          >
-            *
-          </span>
-        </Typography>
-      ),
+      label: <Typography>Business Address</Typography>,
       component: (
         <TextField
           variant="filled"
@@ -178,19 +184,7 @@ const PaymentInformation = (props) => {
       ),
     },
     {
-      label: (
-        <Typography>
-          Suite
-          <span
-            style={{
-              color: "#ff1744",
-              marginRight: 30,
-            }}
-          >
-            *
-          </span>
-        </Typography>
-      ),
+      label: <Typography>Suite</Typography>,
       component: (
         <TextField
           variant="filled"
@@ -238,19 +232,7 @@ const PaymentInformation = (props) => {
       ),
     },
     {
-      label: (
-        <Typography>
-          Zip
-          <span
-            style={{
-              color: "#ff1744",
-              marginRight: 30,
-            }}
-          >
-            *
-          </span>
-        </Typography>
-      ),
+      label: <Typography>Zip</Typography>,
       component: (
         <TextField
           variant="filled"
@@ -266,6 +248,96 @@ const PaymentInformation = (props) => {
       ),
     },
   ];
+
+  const user = [
+    {
+      label: (
+        <Typography>
+          Username
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 30,
+            }}
+          >
+            *
+          </span>
+        </Typography>
+      ),
+      component: (
+        <TextField
+          variant="filled"
+          size="small"
+          placeholder="Username"
+          value={state.OName}
+          onChange={handleChange}
+          inputProps={{
+            name: "Username",
+            id: "outlined-Username-native-simple",
+          }}
+        />
+      ),
+    },
+    {
+      label: (
+        <Typography>
+          Select Password
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 30,
+            }}
+          >
+            *
+          </span>
+        </Typography>
+      ),
+      component: (
+        <TextField
+          variant="filled"
+          size="small"
+          value={state.Password}
+          type="password"
+          placeholder="Password"
+          onChange={handleChange}
+          inputProps={{
+            name: "Password",
+            id: "outlined-Select-Password-native-simple",
+          }}
+        />
+      ),
+    },
+    {
+      label: (
+        <Typography>
+          Confirm Password
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 30,
+            }}
+          >
+            *
+          </span>
+        </Typography>
+      ),
+      component: (
+        <TextField
+          variant="filled"
+          size="small"
+          value={state.CPassword}
+          type="password"
+          placeholder="Confirm Password"
+          onChange={handleChange}
+          inputProps={{
+            name: "CPassword",
+            id: "outlined-Confirm-Password-native-simple",
+          }}
+        />
+      ),
+    },
+  ];
+
   return (
     <div
       style={{
@@ -296,10 +368,32 @@ const PaymentInformation = (props) => {
       >
         <div
           style={{
-            justifyContent: "center",
+            justifyContent: "space-evenly",
             display: "flex",
+            width: "100%",
           }}
         >
+          <div>
+            <Typography align="left" style={{ width: "100%", margin: 10 }}>
+              Password & Information
+            </Typography>
+            <div>
+              {user.map((item, index) => (
+                <div
+                  key={index}
+                  style={{
+                    display: "flex",
+                    flexDirection: "row",
+                    alignItems: "center",
+                    margin: 20,
+                  }}
+                >
+                  <div style={{ flexGrow: 1 }}>{item.label}</div>
+                  {item.component}
+                </div>
+              ))}
+            </div>
+          </div>
           <div>
             <Typography align="center" style={{ width: "100%", margin: 10 }}>
               Payment Information
@@ -329,14 +423,22 @@ const PaymentInformation = (props) => {
           justifyContent: "flex-end",
         }}
         onClick={() => {
-          firebase.default
-            .firestore()
-            .collection(auth.uid)
-            .doc("section1")
-            .set(state)
-            .then((res) => {
-              toast.success("Section added");
-              props.history.push("/payment");
+          sectionschema
+            .validate(state, { abortEarly: false })
+            .then((u) => {
+              firebase.default
+                .firestore()
+                .collection(auth.uid)
+                .doc("section1")
+                .set(u)
+                .then((res) => {
+                  toast.success("Section added");
+                  props.history.push("/payment");
+                });
+            })
+            .catch((err) => {
+              console.log(err);
+              toast.error(err.errors[0]);
             });
         }}
       >

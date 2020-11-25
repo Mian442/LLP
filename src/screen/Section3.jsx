@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import { Add } from "@material-ui/icons";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
+import * as Yup from "yup";
 const Section3 = (props) => {
   const [state, setState] = useState({
     about: "",
@@ -18,6 +19,21 @@ const Section3 = (props) => {
     additional_apple_categories: "",
     apple_coordinates_lat: null,
     apple_coordinates_long: null,
+  });
+
+  const sectionschema = Yup.object({
+    about: Yup.string(),
+    call_tracking_phone_number: Yup.number(),
+    UTM_tracking_website_URL: Yup.string(),
+    bing_call_tracking_phone_number: Yup.number(),
+    bing_UTM_tracking_website_URL: Yup.string(),
+    cover_photo: null,
+    bing_category: Yup.string().required(),
+    additional_bing_categories: Yup.string().required(),
+    apple_category: Yup.string().required(),
+    additional_apple_categories: Yup.string().required(),
+    apple_coordinates_lat: Yup.number(),
+    apple_coordinates_long: Yup.number(),
   });
 
   const [auth, setAuth] = useState();
@@ -107,15 +123,15 @@ const Section3 = (props) => {
       component: (
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
+            width: "100%",
             borderWidth: 1,
             borderColor: "#9e9e9e",
             borderStyle: "solid",
           }}
         >
-          <div style={{ margin: 20, width: "93%", flexDirection: "row" }}>
+          <div
+            style={{ margin: 20, display: "flex", justifyContent: "center" }}
+          >
             <input
               accept="image/*"
               style={{ display: "none" }}
@@ -353,7 +369,7 @@ const Section3 = (props) => {
             onChange={handleChange}
             inputProps={{
               name: "apple_coordinates_lat",
-              id: "outlined-apple_coordinates.lat-native-simple",
+              id: "outlined-apple_coordinates_lat-native-simple",
             }}
           />
           <TextField
@@ -364,7 +380,7 @@ const Section3 = (props) => {
             onChange={handleChange}
             inputProps={{
               name: "apple_coordinates_long",
-              id: "outlined-apple_coordinates.long-native-simple",
+              id: "outlined-apple_coordinates_long-native-simple",
             }}
           />
         </div>
@@ -375,17 +391,17 @@ const Section3 = (props) => {
     <div
       style={{
         flex: 1,
-        margin: 25,
-        padding: 25,
+        margin: 5,
+        padding: 5,
       }}
     >
       <div style={{ display: "flex", justifyContent: "center" }}>
         <div
           style={{
-            borderColor: "#3d5afe",
+            borderColor: "#2F528F",
             borderWidth: 1,
             borderStyle: "solid",
-            background: "#bbdefb",
+            background: "#DAE3F3",
             borderRadius: 7,
             padding: 10,
           }}
@@ -452,12 +468,20 @@ const Section3 = (props) => {
             justifyContent: "center",
             alignItems: "center",
             alignContent: "center",
+            position: "relative",
+            padding: 20,
           }}
         >
           <img
             src="/right-arrow.png"
             alt="next"
-            style={{ width: 80, height: 50 }}
+            style={{
+              position: "absolute",
+              padding: 10,
+              top: 150,
+              width: 80,
+              height: 50,
+            }}
           />
         </div>
         <div
@@ -491,15 +515,20 @@ const Section3 = (props) => {
             justifyContent: "center",
             alignItems: "center",
             alignContent: "center",
-          }}
-          onClick={() => {
-            console.log(state);
+            position: "relative",
+            padding: 20,
           }}
         >
           <img
             src="/right-arrow.png"
             alt="next"
-            style={{ width: 80, height: 50 }}
+            style={{
+              position: "absolute",
+              padding: 10,
+              top: 150,
+              width: 80,
+              height: 50,
+            }}
           />
         </div>
         <div
@@ -537,25 +566,55 @@ const Section3 = (props) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "flex-end",
-        }}
-        onClick={() => {
-          firebase.default
-            .firestore()
-            .collection(auth.uid)
-            .doc("section3")
-            .set(state)
-            .then((res) => {
-              toast.success("Section added");
-              props.history.push("/business_description");
-            });
         }}
       >
-        <img
-          src="/right-arrow.png"
-          alt="next"
-          style={{ width: 75, height: 45 }}
-        />
+        <div
+          style={{
+            display: "flex",
+            transform: "rotateZ(180deg)",
+          }}
+          onClick={() => {
+            props.history.push("/payment");
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%",
+          }}
+          onClick={() => {
+            sectionschema
+              .validate(state, { abortEarly: false })
+              .then((u) => {
+                firebase.default
+                  .firestore()
+                  .collection(auth.uid)
+                  .doc("section3")
+                  .set(u)
+                  .then((res) => {
+                    toast.success("Section added");
+                    props.history.push("/business_description");
+                  });
+              })
+              .catch((err) => {
+                console.log(err);
+                toast.error(err.errors[0]);
+              });
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
       </div>
     </div>
   );

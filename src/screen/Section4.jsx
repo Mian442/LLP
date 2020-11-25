@@ -9,7 +9,7 @@ import "./Screen.css";
 import React, { useEffect, useState } from "react";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
-
+import * as Yup from "yup";
 const Section4 = (props) => {
   const [state, setState] = useState({
     primary_category: "",
@@ -30,6 +30,28 @@ const Section4 = (props) => {
     business_fax: "",
     year_established: "",
     payment_type: "",
+  });
+
+  const sectionschema = Yup.object({
+    primary_category: Yup.string().required(),
+    business_name: Yup.string().required(),
+    primary_website: Yup.string().required(),
+    alternate_website: Yup.string().required(),
+
+    country: Yup.string().required(),
+    street_address: Yup.string().required(),
+    suite: Yup.string().required(),
+    city: Yup.string().required(),
+    state: Yup.string().required(),
+    zip: Yup.number().required(),
+    main_phone: Yup.number().required(),
+    alternate_phone: Yup.number().required(),
+    business_description: Yup.string().required(),
+    business_owner: Yup.string().required(),
+    business_email: Yup.string().required().email(),
+    business_fax: Yup.string(),
+    year_established: Yup.number(),
+    payment_type: Yup.string(),
   });
 
   const [auth, setAuth] = useState();
@@ -520,6 +542,7 @@ const Section4 = (props) => {
             borderColor: "#000",
             borderStyle: "solid",
             width: "61%",
+            cursor: "pointer",
           }}
         >
           <List dense={true}>
@@ -527,6 +550,7 @@ const Section4 = (props) => {
               <ListItem
                 key={index}
                 onClick={() => {
+                  toast.info(item + " payment selected");
                   setState({
                     ...state,
                     payment_type: item,
@@ -633,25 +657,55 @@ const Section4 = (props) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "flex-end",
-        }}
-        onClick={() => {
-          firebase.default
-            .firestore()
-            .collection(auth.uid)
-            .doc("section4")
-            .set(state)
-            .then((res) => {
-              toast.success("Section added");
-              props.history.push("/cover");
-            });
         }}
       >
-        <img
-          src="/right-arrow.png"
-          alt="next"
-          style={{ width: 75, height: 45 }}
-        />
+        <div
+          style={{
+            display: "flex",
+            transform: "rotateZ(180deg)",
+          }}
+          onClick={() => {
+            props.history.push("/categories");
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%",
+          }}
+          onClick={() => {
+            sectionschema
+              .validate(state, { abortEarly: false })
+              .then((u) => {
+                firebase.default
+                  .firestore()
+                  .collection(auth.uid)
+                  .doc("section4")
+                  .set(u)
+                  .then((res) => {
+                    toast.success("Section added");
+                    props.history.push("/cover");
+                  });
+              })
+              .catch((err) => {
+                console.log(err);
+                toast.error(err.errors[0]);
+              });
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
       </div>
     </div>
   );

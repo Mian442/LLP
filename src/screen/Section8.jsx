@@ -64,7 +64,6 @@ const Section8 = (props) => {
   ]);
 
   const [tempclose, settempclose] = useState("");
-  const [tempdate, settempdate] = useState(new Date());
   const [list, setList] = useState([]);
 
   const [auth, setAuth] = useState();
@@ -88,10 +87,14 @@ const Section8 = (props) => {
   };
   const handlelistChange = (event, i) => {
     let s = [...list];
-    console.log("ll", s);
     s[i].type = event.target.name;
-    setState(s);
-    console.log(state);
+    setList(s);
+  };
+
+  const handlelistChangedate = (date, i) => {
+    let s = [...list];
+    s[i].type = date;
+    setList(s);
   };
 
   const handleDateChangefrom = (date, i) => {
@@ -107,12 +110,12 @@ const Section8 = (props) => {
   const handlelistDateChangefrom = (date, i) => {
     let s = [...list];
     s[i].from = date;
-    setState(s);
+    setList(s);
   };
   const handlelistDateChangeto = (date, i) => {
     let s = [...list];
     s[i].to = date;
-    setState(s);
+    setList(s);
   };
   return (
     <div
@@ -167,7 +170,7 @@ const Section8 = (props) => {
                 inputVariant="filled"
                 margin="normal"
                 emptyLabel="--:--"
-                id="time-picker"
+                id={"time-picker" + i}
                 value={item.from}
                 onChange={(event) => {
                   handleDateChangefrom(event, i);
@@ -212,7 +215,7 @@ const Section8 = (props) => {
             <KeyboardTimePicker
               margin="normal"
               inputVariant="filled"
-              id="time-picker"
+              id={"time-picker" + i}
               value={item.to}
               onChange={(event) => {
                 handleDateChangeto(event, i);
@@ -336,8 +339,8 @@ const Section8 = (props) => {
                   allowKeyboardControl={false}
                   clearable
                   disableFuture
-                  value={tempdate}
-                  onChange={(date) => settempdate(date)}
+                  value={item.date}
+                  onChange={(date) => handlelistChangedate(date, i)}
                 />
               </MuiPickersUtilsProvider>
             </Typography>
@@ -350,7 +353,7 @@ const Section8 = (props) => {
                   inputVariant="filled"
                   margin="normal"
                   emptyLabel="--:--"
-                  id="time-picker"
+                  id={"time-picker" + i}
                   value={item.from}
                   onChange={(event) => {
                     handlelistDateChangefrom(event, i);
@@ -395,7 +398,7 @@ const Section8 = (props) => {
               <KeyboardTimePicker
                 margin="normal"
                 inputVariant="filled"
-                id="time-picker"
+                id={"time-picker" + i}
                 value={item.to}
                 onChange={(event) => {
                   handlelistDateChangeto(event, i);
@@ -474,7 +477,12 @@ const Section8 = (props) => {
           color="primary"
           aria-label="upload picture"
           component="span"
-          onClick={() => setList([...list, list.length + 1])}
+          onClick={() =>
+            setList([
+              ...list,
+              { date: new Date(), from: new Date(), to: new Date(), type: "" },
+            ])
+          }
         >
           <Add
             style={{
@@ -488,30 +496,52 @@ const Section8 = (props) => {
       <div
         style={{
           display: "flex",
-          justifyContent: "flex-end",
-        }}
-        onClick={() => {
-          let data = {
-            daily: state,
-            special_Holiday: list,
-            temporary_close: tempclose,
-          };
-          firebase.default
-            .firestore()
-            .collection(auth.uid)
-            .doc("section8")
-            .set(data)
-            .then((res) => {
-              toast.success("Section added");
-              props.history.push("/credentials");
-            });
         }}
       >
-        <img
-          src="/right-arrow.png"
-          alt="next"
-          style={{ width: 75, height: 45 }}
-        />
+        <div
+          style={{
+            display: "flex",
+            transform: "rotateZ(180deg)",
+          }}
+          onClick={() => {
+            props.history.push("/additional");
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "flex-end",
+            width: "100%",
+          }}
+          onClick={() => {
+            let data = {
+              daily: state,
+              temporarily: tempclose,
+              special_Holiday: list,
+            };
+            firebase.default
+              .firestore()
+              .collection(auth.uid)
+              .doc("section8")
+              .set(data)
+              .then((res) => {
+                toast.success("Section added");
+                props.history.push("/credentials");
+              });
+          }}
+        >
+          <img
+            src="/right-arrow.png"
+            alt="next"
+            style={{ width: 75, height: 45 }}
+          />
+        </div>
       </div>
     </div>
   );
