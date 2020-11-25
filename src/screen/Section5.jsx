@@ -40,7 +40,6 @@ const Section5 = (props) => {
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
             }}
           >
             *
@@ -248,7 +247,7 @@ const Section5 = (props) => {
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 7,
             }}
           >
             *
@@ -268,6 +267,7 @@ const Section5 = (props) => {
           style={{
             justifyContent: "center",
             display: "flex",
+            width: 300,
           }}
         >
           <div>

@@ -152,16 +152,18 @@ const Section8 = (props) => {
       </div>
       {state.map((item, i) => (
         <div
+          className="S8"
           key={i}
           style={{
-            justifyContent: "space-evenly",
             display: "flex",
             flexDirection: "row",
             flexWrap: "wrap",
           }}
         >
-          <Typography style={{ marginTop: 20 }}>{item.day}</Typography>
-          <Typography style={{ marginLeft: 10, marginTop: 20 }}>
+          <Typography style={{ marginTop: 20, padding: 10, flexGrow: 0.05 }}>
+            {item.day}
+          </Typography>
+          <Typography style={{ marginLeft: 10, marginTop: 20, padding: 10 }}>
             from
           </Typography>
           <div>
@@ -210,7 +212,7 @@ const Section8 = (props) => {
             </div>
           </div>
 
-          <Typography style={{ marginTop: 20 }}>to</Typography>
+          <Typography style={{ marginTop: 20, padding: 10 }}>to</Typography>
           <MuiPickersUtilsProvider utils={DateFnsUtils}>
             <KeyboardTimePicker
               margin="normal"
@@ -234,6 +236,7 @@ const Section8 = (props) => {
                 flexDirection: "row",
                 alignItems: "center",
                 marginTop: 20,
+                marginLeft: 10,
               }}
             >
               <FormControlLabel
@@ -323,28 +326,28 @@ const Section8 = (props) => {
         </Typography>
         {list.map((item, i) => (
           <div
+            className="S8"
             key={i}
             style={{
-              justifyContent: "space-evenly",
               display: "flex",
               flexDirection: "row",
               flexWrap: "wrap",
+              marginTop: 20,
             }}
           >
-            <Typography style={{ marginTop: 20 }}>
-              <MuiPickersUtilsProvider utils={DateFnsUtils}>
-                <KeyboardDatePicker
-                  autoOk
-                  label="Date"
-                  allowKeyboardControl={false}
-                  clearable
-                  disableFuture
-                  value={item.date}
-                  onChange={(date) => handlelistChangedate(date, i)}
-                />
-              </MuiPickersUtilsProvider>
-            </Typography>
-            <Typography style={{ marginLeft: 10, marginTop: 20 }}>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardDatePicker
+                style={{ padding: 10, marginTop: 5 }}
+                autoOk
+                label="Date"
+                allowKeyboardControl={false}
+                clearable
+                disableFuture
+                value={item.date}
+                onChange={(date) => handlelistChangedate(date, i)}
+              />
+            </MuiPickersUtilsProvider>
+            <Typography style={{ marginLeft: 10, marginTop: 20, padding: 10 }}>
               from
             </Typography>
             <div>
@@ -393,7 +396,7 @@ const Section8 = (props) => {
               </div>
             </div>
 
-            <Typography style={{ marginTop: 20 }}>to</Typography>
+            <Typography style={{ marginTop: 20, padding: 10 }}>to</Typography>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardTimePicker
                 margin="normal"
@@ -417,6 +420,7 @@ const Section8 = (props) => {
                   flexDirection: "row",
                   alignItems: "center",
                   marginTop: 20,
+                  marginLeft: 10,
                 }}
               >
                 <FormControlLabel

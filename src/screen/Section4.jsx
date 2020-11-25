@@ -66,7 +66,7 @@ const Section4 = (props) => {
     });
   });
 
-  const generate = ["Visa", "Mastercard", "Discover", "Cash", "Amex", "Checl"];
+  const generate = ["Visa", "Mastercard", "Discover", "Cash", "Amex", "Check"];
 
   const handleChange = (event) => {
     const name = event.target.name;
@@ -538,14 +538,15 @@ const Section4 = (props) => {
       component: (
         <div
           style={{
-            borderWidth: 2,
-            borderColor: "#000",
+            borderWidth: 1,
+            borderColor: "#757575",
             borderStyle: "solid",
             width: "61%",
             cursor: "pointer",
+            color: "#757575",
           }}
         >
-          <List dense={true}>
+          <List>
             {generate.map((item, index) => (
               <ListItem
                 key={index}
@@ -583,7 +584,7 @@ const Section4 = (props) => {
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 7,
             }}
           >
             *

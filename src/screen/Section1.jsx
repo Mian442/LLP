@@ -353,7 +353,7 @@ const PaymentScreen = (props) => {
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 7,
             }}
           >
             *
@@ -444,7 +444,10 @@ const PaymentScreen = (props) => {
           }}
         >
           <div>
-            <Typography align="center" style={{ width: "100%", margin: 10 }}>
+            <Typography
+              align="center"
+              style={{ width: "100%", margin: 10, fontWeight: "bold" }}
+            >
               Select Your Billing Plan
             </Typography>
             <div
@@ -467,8 +470,11 @@ const PaymentScreen = (props) => {
                 });
               }}
             >
-              <Typography align="center" style={{ width: "100%", height: 20 }}>
-                Monthly Recurring Payments = $40/month
+              <Typography
+                align="center"
+                style={{ width: "100%", height: 20, fontSize: 18 }}
+              >
+                Monthly Recurring Payments = <strong>$40/month</strong>
               </Typography>
             </div>
             <div
@@ -483,20 +489,28 @@ const PaymentScreen = (props) => {
                 cursor: "pointer",
               }}
               onClick={() => {
-                toast.info("One Time Annual Payment = 400/yr is selected");
+                toast.info("One Time Annual Payment = $400/yr is selected");
                 setState({
                   ...state,
                   plan: { amount: 400, type: "Year Plan" },
                 });
               }}
             >
-              <Typography align="center" style={{ width: "100%", height: 20 }}>
-                One Time Annual Payment = 400/yr
+              <Typography
+                align="center"
+                style={{ width: "100%", height: 20, fontSize: 18 }}
+              >
+                One Time Annual Payment = <strong>$400/yr</strong>
               </Typography>
             </div>
             <Typography
               align="center"
-              style={{ width: "100%", margin: 3, color: "#bdbdbd" }}
+              style={{
+                width: "100%",
+                margin: 3,
+                color: "#bdbdbd",
+                fontWeight: "bold",
+              }}
             >
               Save $80 per year = Save 2 months FREE
             </Typography>

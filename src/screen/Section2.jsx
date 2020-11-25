@@ -351,7 +351,7 @@ const PaymentInformation = (props) => {
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 7,
             }}
           >
             *
@@ -374,7 +374,7 @@ const PaymentInformation = (props) => {
           }}
         >
           <div>
-            <Typography align="left" style={{ width: "100%", margin: 10 }}>
+            <Typography align="center" style={{ width: "100%", margin: 10 }}>
               Password & Information
             </Typography>
             <div>
@@ -395,7 +395,7 @@ const PaymentInformation = (props) => {
             </div>
           </div>
           <div>
-            <Typography align="center" style={{ width: "100%", margin: 10 }}>
+            <Typography align="left" style={{ width: "100%", margin: 10 }}>
               Payment Information
             </Typography>
             <div>

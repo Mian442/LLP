@@ -31,6 +31,24 @@
 .MuiInputBase-root {
   height: auto;
 }
+.MuiListItem-root,
+.MuiListItem-gutters,
+.MuiList-padding {
+  padding-left: unset !important;
+  padding-right: unset !important;
+  padding-top: unset !important;
+  padding-bottom: unset !important;
+}
+.S7 .MuiFormControl-root {
+  width: auto !important;
+}
+.S8 .MuiFormControl-root {
+  width: unset !important;
+}
+.MuiListItemText-root {
+  margin-bottom: unset !important;
+  margin-top: unset !important;
+}
 @media screen and (min-width: 768px) {
   .section7 {
     width: 57%;

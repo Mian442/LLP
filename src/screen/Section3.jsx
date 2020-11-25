@@ -421,7 +421,7 @@ const Section3 = (props) => {
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 7,
             }}
           >
             *

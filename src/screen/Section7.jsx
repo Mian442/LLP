@@ -82,6 +82,7 @@ const Section7 = (props) => {
         </Typography>
       </div>
       <div
+        className="S7"
         style={{
           display: "flex",
           flexWrap: "wrap",
@@ -107,7 +108,7 @@ const Section7 = (props) => {
             }}
           />
           <Typography>Attributes</Typography>
-          <Typography>
+          <Typography style={{ color: "#757575" }}>
             Your business category and region determine the attributes available
             for your location. Only available attributes for location on Google
             are selectable. Additionally, subjective attributes may appear on
@@ -187,7 +188,7 @@ const Section7 = (props) => {
               id: "outlined-Primary-Website-native-simple",
             }}
           />
-          <Typography>
+          <Typography style={{ color: "#757575" }}>
             Google automatically places a location’s pin based on its address.
             If you’ve manually moved this pin away from Google’s default,
             selecting this option will omit address info from being indexed. and
@@ -199,9 +200,10 @@ const Section7 = (props) => {
             justifyContent: "center",
             display: "flex",
             alignSelf: "center",
+            width: 300,
           }}
         >
-          <div style={{}}>
+          <div style={{ width: "inherit" }}>
             <Typography>
               Profile Photo
               <span

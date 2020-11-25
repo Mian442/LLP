@@ -47,7 +47,7 @@ const Section6 = (props) => {
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 7,
             }}
           >
             *
@@ -113,7 +113,7 @@ const Section6 = (props) => {
                   onChange={handleChange}
                   inputProps={{
                     name: "keywords" + index + ".in1",
-                    id: "outlined-Primary-" + index + "-native-simple",
+                    id: "outlined-Primary-" + index + "-native-simple-1",
                   }}
                 />
                 <TextField
@@ -123,7 +123,8 @@ const Section6 = (props) => {
                   onChange={handleChange}
                   inputProps={{
                     name: "keywords" + index + ".in2",
-                    id: "outlined-Primary-Category" + index + "-native-simple",
+                    id:
+                      "outlined-Primary-Category" + index + "-native-simple-2",
                   }}
                 />
               </div>
@@ -184,15 +185,15 @@ const Section6 = (props) => {
                 <TextField
                   variant="filled"
                   size="small"
-                  value={state?.[`keywords${index + total2.length}`]?.in2}
+                  value={state?.[`keywords${index + total.length}`]?.in2}
                   onChange={handleChange}
                   inputProps={{
-                    name: `keywords${index + total2.length}.in2`,
+                    name: `keywords${index + total.length}.in2`,
                     id:
                       "outlined-Primary-Category" +
                       index +
                       total2.length +
-                      "-native-simple",
+                      "-native-simple2",
                   }}
                 />
               </div>
@@ -222,6 +223,7 @@ const Section6 = (props) => {
             K <= 9
               ? setTotal([...total, K + 1])
               : setTotal2([...total2, k2 + 1]);
+            console.log(total, total2);
           }
         }}
       >
