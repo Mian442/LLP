@@ -115,11 +115,11 @@ const Credentials = (props) => {
       }}
     >
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 7,
             }}
           >
             *
@@ -140,7 +140,10 @@ const Credentials = (props) => {
           }}
         >
           <div>
-            <Typography align="center" style={{ width: "100%", margin: 10 }}>
+            <Typography
+              align="center"
+              style={{ width: "100%", margin: 10, fontWeight: "bold" }}
+            >
               Personal Facebook Login Credentials
             </Typography>
             <div>
@@ -167,7 +170,10 @@ const Credentials = (props) => {
           }}
         >
           <div>
-            <Typography align="center" style={{ width: "100%", margin: 10 }}>
+            <Typography
+              align="center"
+              style={{ width: "100%", margin: 10, fontWeight: "bold" }}
+            >
               Google My Business Login Credentials
             </Typography>
             <div>

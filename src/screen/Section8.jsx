@@ -135,7 +135,7 @@ const Section8 = (props) => {
         }}
       >
         <div style={{}}>
-          <Typography>
+          <Typography style={{ fontWeight: "bold" }}>
             Daily
             <span
               style={{
@@ -280,7 +280,9 @@ const Section8 = (props) => {
         </div>
       ))}
       <div>
-        <Typography variant="h6">Temporarily Closed</Typography>
+        <Typography variant="h6" style={{ fontWeight: "bold" }}>
+          Temporarily Closed
+        </Typography>
         <FormControl component="fieldset">
           <FormGroup
             style={{
@@ -320,7 +322,9 @@ const Section8 = (props) => {
             />
           </FormGroup>
         </FormControl>
-        <Typography variant="h6">Special/Holidays Hours </Typography>
+        <Typography variant="h6" style={{ fontWeight: "bold" }}>
+          Special/Holidays Hours{" "}
+        </Typography>
         <Typography variant="body1">
           Only Selected dates will be updated
         </Typography>

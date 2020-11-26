@@ -35,7 +35,7 @@ const Section5 = (props) => {
   const form = [
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Cover Photo
           <span
             style={{
@@ -130,7 +130,11 @@ const Section5 = (props) => {
 
   const user = [
     {
-      label: <Typography>Add General Images</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>
+          Add General Images
+        </Typography>
+      ),
       component: (
         <div
           style={{
@@ -243,7 +247,7 @@ const Section5 = (props) => {
           justifyContent: "flex-end",
         }}
       >
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
               color: "#ff1744",
@@ -270,7 +274,7 @@ const Section5 = (props) => {
             width: 300,
           }}
         >
-          <div>
+          <div style={{ width: "inherit" }}>
             {form.map((item, index) => (
               <div
                 key={index}

@@ -43,7 +43,7 @@ const Section6 = (props) => {
           justifyContent: "flex-end",
         }}
       >
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
               color: "#ff1744",
@@ -89,7 +89,9 @@ const Section6 = (props) => {
                 }}
                 key={index}
               >
-                <Typography>{index + 1}</Typography>
+                <Typography style={{ fontWeight: "bold" }}>
+                  {index + 1}
+                </Typography>
                 <IconButton
                   color="primary"
                   aria-label="upload picture"
@@ -148,7 +150,9 @@ const Section6 = (props) => {
                 }}
                 key={index}
               >
-                <Typography>{index + total.length + 1}</Typography>
+                <Typography style={{ fontWeight: "bold" }}>
+                  {index + total.length + 1}
+                </Typography>
                 <IconButton
                   color="primary"
                   aria-label="upload picture"

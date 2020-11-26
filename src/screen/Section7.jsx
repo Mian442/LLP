@@ -69,7 +69,7 @@ const Section7 = (props) => {
           justifyContent: "flex-end",
         }}
       >
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
               color: "#ff1744",
@@ -94,7 +94,9 @@ const Section7 = (props) => {
           className="section7"
           style={{ display: "flex", flexDirection: "column" }}
         >
-          <Typography>Additional Categories</Typography>
+          <Typography style={{ fontWeight: "bold" }}>
+            Additional Categories
+          </Typography>
           <TextField
             id="outlined-basic"
             variant="filled"
@@ -107,7 +109,7 @@ const Section7 = (props) => {
               id: "outlined-additional_categories-native-simple",
             }}
           />
-          <Typography>Attributes</Typography>
+          <Typography style={{ fontWeight: "bold" }}>Attributes</Typography>
           <Typography style={{ color: "#757575" }}>
             Your business category and region determine the attributes available
             for your location. Only available attributes for location on Google
@@ -120,7 +122,7 @@ const Section7 = (props) => {
             a location. Please add a Google account to the “External Logins”
             page (under My Account) for this location to enable attributes
           </Typography>
-          <Typography>Select</Typography>
+          <Typography style={{ fontWeight: "bold" }}>Select</Typography>
           <FormControl variant="outlined" style={{ width: 300, height: 30 }}>
             <Select
               native
@@ -140,7 +142,9 @@ const Section7 = (props) => {
               <option value={30}>Thirty</option>
             </Select>
           </FormControl>
-          <Typography>Call Tracking Phone Number</Typography>
+          <Typography style={{ fontWeight: "bold" }}>
+            Call Tracking Phone Number
+          </Typography>
           <TextField
             variant="filled"
             size="small"
@@ -152,7 +156,9 @@ const Section7 = (props) => {
               id: "outlined-call_tracking_phone_number-native-simple",
             }}
           />
-          <Typography>UTM/Tracking Website URL</Typography>
+          <Typography style={{ fontWeight: "bold" }}>
+            UTM/Tracking Website URL
+          </Typography>
           <TextField
             variant="filled"
             size="small"
@@ -164,7 +170,9 @@ const Section7 = (props) => {
               id: "outlined-Primary-Website-native-simple",
             }}
           />
-          <Typography>Appointment URL</Typography>
+          <Typography style={{ fontWeight: "bold" }}>
+            Appointment URL
+          </Typography>
           <TextField
             variant="filled"
             size="small"
@@ -176,7 +184,9 @@ const Section7 = (props) => {
               id: "outlined-Primary-Website-native-simple",
             }}
           />
-          <Typography>Google Maps Pin (Link)</Typography>
+          <Typography style={{ fontWeight: "bold" }}>
+            Google Maps Pin (Link)
+          </Typography>
           <TextField
             variant="filled"
             size="small"
@@ -204,7 +214,7 @@ const Section7 = (props) => {
           }}
         >
           <div style={{ width: "inherit" }}>
-            <Typography>
+            <Typography style={{ fontWeight: "bold" }}>
               Profile Photo
               <span
                 style={{
@@ -292,7 +302,7 @@ const Section7 = (props) => {
                 </label>
               </div>
             </div>
-            <Typography>Cover Photo</Typography>,
+            <Typography style={{ fontWeight: "bold" }}>Cover Photo</Typography>,
             <div
               style={{
                 display: "flex",
@@ -370,7 +380,10 @@ const Section7 = (props) => {
                 </label>
               </div>
             </div>
-            <Typography>Add General Images</Typography>,
+            <Typography style={{ fontWeight: "bold" }}>
+              Add General Images
+            </Typography>
+            ,
             <div
               style={{
                 display: "flex",

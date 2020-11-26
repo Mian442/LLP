@@ -57,7 +57,7 @@ const PaymentInformation = (props) => {
   const form = [
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Owner Name
           <span
             style={{
@@ -85,7 +85,7 @@ const PaymentInformation = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Business Name
           <span
             style={{
@@ -113,7 +113,7 @@ const PaymentInformation = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Business Email
           <span
             style={{
@@ -141,7 +141,7 @@ const PaymentInformation = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Business Phone
           <span
             style={{
@@ -168,7 +168,9 @@ const PaymentInformation = (props) => {
       ),
     },
     {
-      label: <Typography>Business Address</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>Business Address</Typography>
+      ),
       component: (
         <TextField
           variant="filled"
@@ -184,7 +186,7 @@ const PaymentInformation = (props) => {
       ),
     },
     {
-      label: <Typography>Suite</Typography>,
+      label: <Typography style={{ fontWeight: "bold" }}>Suite</Typography>,
       component: (
         <TextField
           variant="filled"
@@ -200,7 +202,7 @@ const PaymentInformation = (props) => {
       ),
     },
     {
-      label: <Typography>City</Typography>,
+      label: <Typography style={{ fontWeight: "bold" }}>City</Typography>,
       component: (
         <TextField
           variant="filled"
@@ -216,7 +218,7 @@ const PaymentInformation = (props) => {
       ),
     },
     {
-      label: <Typography>State</Typography>,
+      label: <Typography style={{ fontWeight: "bold" }}>State</Typography>,
       component: (
         <TextField
           variant="filled"
@@ -232,7 +234,7 @@ const PaymentInformation = (props) => {
       ),
     },
     {
-      label: <Typography>Zip</Typography>,
+      label: <Typography style={{ fontWeight: "bold" }}>Zip</Typography>,
       component: (
         <TextField
           variant="filled"
@@ -252,7 +254,7 @@ const PaymentInformation = (props) => {
   const user = [
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Username
           <span
             style={{
@@ -280,7 +282,7 @@ const PaymentInformation = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Select Password
           <span
             style={{
@@ -309,7 +311,7 @@ const PaymentInformation = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Confirm Password
           <span
             style={{
@@ -347,7 +349,7 @@ const PaymentInformation = (props) => {
       }}
     >
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
               color: "#ff1744",
@@ -374,7 +376,10 @@ const PaymentInformation = (props) => {
           }}
         >
           <div>
-            <Typography align="center" style={{ width: "100%", margin: 10 }}>
+            <Typography
+              align="center"
+              style={{ width: "100%", margin: 10, fontWeight: "bold" }}
+            >
               Password & Information
             </Typography>
             <div>
@@ -395,7 +400,10 @@ const PaymentInformation = (props) => {
             </div>
           </div>
           <div>
-            <Typography align="left" style={{ width: "100%", margin: 10 }}>
+            <Typography
+              align="left"
+              style={{ width: "100%", margin: 10, fontWeight: "bold" }}
+            >
               Payment Information
             </Typography>
             <div>

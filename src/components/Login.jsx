@@ -28,7 +28,7 @@ const SignUp = (props) => {
   const user = [
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Username
           <span
             style={{
@@ -56,7 +56,7 @@ const SignUp = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Select Password
           <span
             style={{
@@ -118,7 +118,7 @@ const SignUp = (props) => {
               <div>
                 <Typography
                   align="center"
-                  style={{ width: "100%", margin: 10 }}
+                  style={{ width: "100%", margin: 10, fontWeight: "bold" }}
                 >
                   Username & Password Information
                 </Typography>

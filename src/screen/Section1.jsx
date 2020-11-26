@@ -349,7 +349,7 @@ const PaymentScreen = (props) => {
       }}
     >
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
               color: "#ff1744",
@@ -399,9 +399,11 @@ const PaymentScreen = (props) => {
                   flexDirection: "column",
                 }}
               >
-                <Typography>{item.label}</Typography>
+                <Typography style={{ fontWeight: "bold" }}>
+                  {item.label}
+                </Typography>
                 {item.sub && (
-                  <Typography style={{ color: "#bdbdbd" }}>
+                  <Typography style={{ color: "#bdbdbd", fontWeight: "bold" }}>
                     {item.sub}
                   </Typography>
                 )}

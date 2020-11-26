@@ -80,7 +80,7 @@ const Section4 = (props) => {
   const form = [
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Primary Category (Google)
           <span
             style={{
@@ -108,7 +108,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Business Name
           <span
             style={{
@@ -136,7 +136,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Primary Website
           <span
             style={{
@@ -164,7 +164,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Alternate Website
           <span
             style={{
@@ -192,7 +192,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Country
           <span
             style={{
@@ -220,7 +220,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Street Address
           <span
             style={{
@@ -248,7 +248,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Suite
           <span
             style={{
@@ -276,7 +276,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           City
           <span
             style={{
@@ -304,7 +304,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           State
           <span
             style={{
@@ -332,7 +332,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Zip
           <span
             style={{
@@ -360,7 +360,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Main Phone
           <span
             style={{
@@ -388,7 +388,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Alternate Phone
           <span
             style={{
@@ -419,7 +419,7 @@ const Section4 = (props) => {
   const user = [
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Business Description
           <span
             style={{
@@ -447,7 +447,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Business Owner
           <span
             style={{
@@ -475,7 +475,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Business Email
           <span
             style={{
@@ -502,7 +502,9 @@ const Section4 = (props) => {
       ),
     },
     {
-      label: <Typography>Business Fax</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>Business Fax</Typography>
+      ),
       component: (
         <TextField
           variant="filled"
@@ -518,7 +520,9 @@ const Section4 = (props) => {
       ),
     },
     {
-      label: <Typography>Year Established</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>Year Established</Typography>
+      ),
       component: (
         <TextField
           variant="filled"
@@ -534,7 +538,9 @@ const Section4 = (props) => {
       ),
     },
     {
-      label: <Typography>Payment Types</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>Payment Types</Typography>
+      ),
       component: (
         <div
           style={{
@@ -580,7 +586,7 @@ const Section4 = (props) => {
           justifyContent: "flex-end",
         }}
       >
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
               color: "#ff1744",

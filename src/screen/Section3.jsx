@@ -70,7 +70,7 @@ const Section3 = (props) => {
 
   const form = [
     {
-      label: <Typography>About</Typography>,
+      label: <Typography style={{ fontWeight: "bold" }}>About</Typography>,
       component: (
         <TextField
           variant="filled"
@@ -87,7 +87,11 @@ const Section3 = (props) => {
       ),
     },
     {
-      label: <Typography>Call Tracking Phone Number</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>
+          Call Tracking Phone Number
+        </Typography>
+      ),
       component: (
         <TextField
           variant="filled"
@@ -103,7 +107,11 @@ const Section3 = (props) => {
       ),
     },
     {
-      label: <Typography>UTM/Tracking Website URL</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>
+          UTM/Tracking Website URL
+        </Typography>
+      ),
       component: (
         <TextField
           variant="filled"
@@ -119,7 +127,9 @@ const Section3 = (props) => {
       ),
     },
     {
-      label: <Typography>Cover Photo</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>Cover Photo</Typography>
+      ),
       component: (
         <div
           style={{
@@ -205,7 +215,7 @@ const Section3 = (props) => {
   const form2 = [
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Bing Category
           <span
             style={{
@@ -233,7 +243,7 @@ const Section3 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Additional Bing Categories
           <span
             style={{
@@ -260,7 +270,11 @@ const Section3 = (props) => {
       ),
     },
     {
-      label: <Typography>Call Tracking Phone Number</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>
+          Call Tracking Phone Number
+        </Typography>
+      ),
       component: (
         <TextField
           variant="filled"
@@ -276,7 +290,11 @@ const Section3 = (props) => {
       ),
     },
     {
-      label: <Typography>UTM/Tracking Website URL</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>
+          UTM/Tracking Website URL
+        </Typography>
+      ),
       component: (
         <TextField
           variant="filled"
@@ -296,7 +314,7 @@ const Section3 = (props) => {
   const user = [
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Apple Category
           <span
             style={{
@@ -324,7 +342,7 @@ const Section3 = (props) => {
     },
     {
       label: (
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           Apple Additional Categories
           <span
             style={{
@@ -351,7 +369,11 @@ const Section3 = (props) => {
       ),
     },
     {
-      label: <Typography>Apple Coordinates</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>
+          Apple Coordinates
+        </Typography>
+      ),
       component: (
         <div
           style={{
@@ -417,7 +439,7 @@ const Section3 = (props) => {
           justifyContent: "flex-end",
         }}
       >
-        <Typography>
+        <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
               color: "#ff1744",
