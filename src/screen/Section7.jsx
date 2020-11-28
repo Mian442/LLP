@@ -107,7 +107,10 @@ const Section7 = (props) => {
       >
         <div
           className="section7"
-          style={{ display: "flex", flexDirection: "column" }}
+          style={{
+            display: "flex",
+            flexDirection: "column",
+          }}
         >
           <Typography style={{ fontWeight: "bold" }}>
             Additional Categories
@@ -124,20 +127,24 @@ const Section7 = (props) => {
               id: "outlined-additional_categories-native-simple",
             }}
           />
-          <Typography style={{ fontWeight: "bold" }}>Attributes</Typography>
-          <Typography style={{ color: "#757575" }}>
+          <Typography style={{ fontWeight: "bold", marginTop: 20 }}>
+            Attributes
+          </Typography>
+          <Typography style={{ color: "#757575", marginTop: 7 }}>
             Your business category and region determine the attributes available
             for your location. Only available attributes for location on Google
             are selectable. Additionally, subjective attributes may appear on
             your listing, but these relay on the opinions of Google customers
             who’ve visited your business and are not configurable
           </Typography>
-          <Typography style={{ color: "red" }}>
+          <Typography style={{ color: "red", marginTop: 20 }}>
             Attributes can only be retrieved with a valid Google credential for
             a location. Please add a Google account to the “External Logins”
             page (under My Account) for this location to enable attributes
           </Typography>
-          <Typography style={{ fontWeight: "bold" }}>Select</Typography>
+          <Typography style={{ fontWeight: "bold", marginTop: 20 }}>
+            Select
+          </Typography>
           <FormControl variant="outlined" style={{ width: 300, height: 30 }}>
             <Select
               native
@@ -157,7 +164,7 @@ const Section7 = (props) => {
               <option value="Canada">Canada</option>
             </Select>
           </FormControl>
-          <Typography style={{ fontWeight: "bold" }}>
+          <Typography style={{ fontWeight: "bold", marginTop: 20 }}>
             Call Tracking Phone Number
           </Typography>
           <TextField
@@ -171,7 +178,7 @@ const Section7 = (props) => {
               id: "outlined-call_tracking_phone_number-native-simple",
             }}
           />
-          <Typography style={{ fontWeight: "bold" }}>
+          <Typography style={{ fontWeight: "bold", marginTop: 20 }}>
             UTM/Tracking Website URL
           </Typography>
           <TextField
@@ -185,7 +192,7 @@ const Section7 = (props) => {
               id: "outlined-Primary-Website-native-simple",
             }}
           />
-          <Typography style={{ fontWeight: "bold" }}>
+          <Typography style={{ fontWeight: "bold", marginTop: 20 }}>
             Appointment URL
           </Typography>
           <TextField
@@ -199,7 +206,7 @@ const Section7 = (props) => {
               id: "outlined-Primary-Website-native-simple",
             }}
           />
-          <Typography style={{ fontWeight: "bold" }}>
+          <Typography style={{ fontWeight: "bold", marginTop: 20 }}>
             Google Maps Pin (Link)
           </Typography>
           <TextField
@@ -213,7 +220,7 @@ const Section7 = (props) => {
               id: "outlined-Primary-Website-native-simple",
             }}
           />
-          <Typography style={{ color: "#757575" }}>
+          <Typography style={{ color: "#757575", marginTop: 20 }}>
             Google automatically places a location’s pin based on its address.
             If you’ve manually moved this pin away from Google’s default,
             selecting this option will omit address info from being indexed. and
@@ -229,7 +236,7 @@ const Section7 = (props) => {
           }}
         >
           <div style={{ width: "inherit" }}>
-            <Typography style={{ fontWeight: "bold" }}>
+            <Typography style={{ fontWeight: "bold", marginTop: 20 }}>
               Profile Photo
               <span
                 style={{
@@ -317,7 +324,10 @@ const Section7 = (props) => {
                 </label>
               </div>
             </div>
-            <Typography style={{ fontWeight: "bold" }}>Cover Photo</Typography>,
+            <Typography style={{ fontWeight: "bold", marginTop: 20 }}>
+              Cover Photo
+            </Typography>
+            ,
             <div
               style={{
                 display: "flex",
@@ -395,7 +405,7 @@ const Section7 = (props) => {
                 </label>
               </div>
             </div>
-            <Typography style={{ fontWeight: "bold" }}>
+            <Typography style={{ fontWeight: "bold", marginTop: 20 }}>
               Add General Images
             </Typography>
             ,
