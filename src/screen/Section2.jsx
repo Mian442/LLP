@@ -37,7 +37,7 @@ const PaymentInformation = (props) => {
     owner_name: Yup.string().required(),
     business_name: Yup.string().required(),
     business_email: Yup.string().email().required(),
-    business_phone: Yup.number().required(),
+    business_phone: Yup.string().required(),
     business_address: Yup.string(),
     suite: Yup.string(),
     city: Yup.string(),
@@ -349,6 +349,25 @@ const PaymentInformation = (props) => {
       }}
     >
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ flexGrow: 1 }}>
+          <div
+            style={{
+              borderColor: "#000",
+              borderWidth: 1,
+              borderStyle: "solid",
+              background: "#ffab00",
+              borderRadius: 7,
+              padding: 10,
+              cursor: "pointer",
+              width: 200,
+              color: "#fff",
+            }}
+          >
+            <Typography align="center" style={{ width: "100%" }}>
+              Section 1
+            </Typography>
+          </div>
+        </div>
         <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
@@ -361,6 +380,7 @@ const PaymentInformation = (props) => {
           Required Field
         </Typography>
       </div>
+
       <div
         style={{
           display: "flex",

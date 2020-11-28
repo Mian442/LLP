@@ -36,7 +36,7 @@ const Section5 = (props) => {
     {
       label: (
         <Typography style={{ fontWeight: "bold" }}>
-          Cover Photo
+          Set Logo
           <span
             style={{
               color: "#ff1744",
@@ -241,12 +241,26 @@ const Section5 = (props) => {
         padding: 25,
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      >
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ flexGrow: 1 }}>
+          <div
+            style={{
+              borderColor: "#000",
+              borderWidth: 1,
+              borderStyle: "solid",
+              background: "#ffab00",
+              borderRadius: 7,
+              padding: 10,
+              cursor: "pointer",
+              width: 200,
+              color: "#fff",
+            }}
+          >
+            <Typography align="center" style={{ width: "100%" }}>
+              Section 5
+            </Typography>
+          </div>
+        </div>
         <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{

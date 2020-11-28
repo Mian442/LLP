@@ -57,11 +57,12 @@ const Information = (props) => {
             Welcome to Our Listings Self-Serve Station
           </Typography>
         </div>
-        <Typography align="center" style={{ color: "#757575", fontSize: 16 }}>
+        <Typography align="center" style={{ color: "#757575", fontSize: 14 }}>
           Just follow the Steps to input your company information and submit
+          your purchase
         </Typography>
         <Typography align="center" style={{ color: "#757575", fontSize: 14 }}>
-          your purchase You will receive a confirmation email once completed
+          You will receive a confirmation email once completed
         </Typography>
       </div>
     </div>

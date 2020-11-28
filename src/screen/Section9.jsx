@@ -115,6 +115,25 @@ const Credentials = (props) => {
       }}
     >
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ flexGrow: 1 }}>
+          <div
+            style={{
+              borderColor: "#000",
+              borderWidth: 1,
+              borderStyle: "solid",
+              background: "#ffab00",
+              borderRadius: 7,
+              padding: 10,
+              cursor: "pointer",
+              width: 200,
+              color: "#fff",
+            }}
+          >
+            <Typography align="center" style={{ width: "100%" }}>
+              Section 9
+            </Typography>
+          </div>
+        </div>
         <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
@@ -131,6 +150,7 @@ const Credentials = (props) => {
         style={{
           display: "flex",
           flexDirection: "row",
+          justifyContent: "center",
         }}
       >
         <div

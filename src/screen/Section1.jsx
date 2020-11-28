@@ -14,7 +14,7 @@ import * as Yup from "yup";
 
 const PaymentScreen = (props) => {
   const [state, setState] = React.useState({
-    country: "",
+    country: "United States",
     full_name: "",
     last_name: "",
     billing_address_line_1: "",
@@ -62,7 +62,7 @@ const PaymentScreen = (props) => {
     city: Yup.string().required(),
     state: Yup.string().required(),
     zip_code: Yup.number().required(),
-    ph: Yup.number().required(),
+    ph: Yup.string().required(),
     email: Yup.string().required(),
     plan: Yup.object({
       amount: Yup.number().required(),
@@ -86,11 +86,11 @@ const PaymentScreen = (props) => {
             }}
           >
             <option aria-label="None" value="United State">
-              United State
+              United States
             </option>
-            <option value={10}>Ten</option>
-            <option value={20}>Twenty</option>
-            <option value={30}>Thirty</option>
+            <option value="United Kingdom">United Kingdom</option>
+            <option value="Australia">Australia</option>
+            <option value="Canada">Canada</option>
           </Select>
         </FormControl>
       ),
@@ -349,6 +349,25 @@ const PaymentScreen = (props) => {
       }}
     >
       <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ flexGrow: 1 }}>
+          <div
+            style={{
+              borderColor: "#000",
+              borderWidth: 1,
+              borderStyle: "solid",
+              background: "#ffab00",
+              borderRadius: 7,
+              padding: 10,
+              cursor: "pointer",
+              width: 200,
+              color: "#fff",
+            }}
+          >
+            <Typography align="center" style={{ width: "100%" }}>
+              Section 2
+            </Typography>
+          </div>
+        </div>
         <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
@@ -364,9 +383,6 @@ const PaymentScreen = (props) => {
       <div style={{ marginLeft: 20, marginTop: 30 }}>
         <Typography variant="h6" style={{ color: "#3d5afe" }}>
           Pay with Credit Card or Log In
-        </Typography>
-        <Typography variant="body1">
-          <Link>Learn more</Link> about PayPal - the safer, easier way to pay
         </Typography>
         <Typography variant="caption" style={{ color: "#ffab00" }}>
           Enter Your Billing information
@@ -421,14 +437,22 @@ const PaymentScreen = (props) => {
           <div
             style={{
               display: "flex",
-              justifyContent: "center",
+              justifyContent: "flex-end",
               marginLeft: 160,
+              marginTop: 60,
             }}
           >
             <Button
               variant="contained"
               color="secondary"
-              style={{ backgroundColor: "#ffab00", color: "#000" }}
+              style={{
+                backgroundColor: "#ffab00",
+                color: "#000",
+                width: 300,
+                margin: 10,
+                fontWeight: "bold",
+                fontSize: 15,
+              }}
               onClick={() => {
                 console.log(state);
               }}
@@ -448,7 +472,12 @@ const PaymentScreen = (props) => {
           <div>
             <Typography
               align="center"
-              style={{ width: "100%", margin: 10, fontWeight: "bold" }}
+              style={{
+                width: "100%",
+                margin: 10,
+                fontWeight: "bold",
+                fontSize: 22,
+              }}
             >
               Select Your Billing Plan
             </Typography>
@@ -474,7 +503,7 @@ const PaymentScreen = (props) => {
             >
               <Typography
                 align="center"
-                style={{ width: "100%", height: 20, fontSize: 18 }}
+                style={{ width: "100%", fontSize: 28 }}
               >
                 Monthly Recurring Payments = <strong>$40/month</strong>
               </Typography>
@@ -500,7 +529,7 @@ const PaymentScreen = (props) => {
             >
               <Typography
                 align="center"
-                style={{ width: "100%", height: 20, fontSize: 18 }}
+                style={{ width: "100%", fontSize: 28 }}
               >
                 One Time Annual Payment = <strong>$400/yr</strong>
               </Typography>
@@ -512,6 +541,7 @@ const PaymentScreen = (props) => {
                 margin: 3,
                 color: "#bdbdbd",
                 fontWeight: "bold",
+                fontSize: 22,
               }}
             >
               Save $80 per year = Save 2 months FREE

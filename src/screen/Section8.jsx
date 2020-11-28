@@ -1,9 +1,11 @@
 import {
+  Button,
   Checkbox,
   FormControl,
   FormControlLabel,
   FormGroup,
   IconButton,
+  Switch,
   Typography,
 } from "@material-ui/core";
 import "./Screen.css";
@@ -14,7 +16,7 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-import { Add, Close, Remove } from "@material-ui/icons";
+import { Add, Close } from "@material-ui/icons";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
 const Section8 = (props) => {
@@ -23,43 +25,43 @@ const Section8 = (props) => {
       day: "Monday",
       from: new Date(),
       to: new Date(),
-      type: "",
+      checked: true,
     },
     {
       day: "Tuesday",
       from: new Date(),
       to: new Date(),
-      type: "",
+      checked: true,
     },
     {
       day: "Wednesday",
       from: new Date(),
       to: new Date(),
-      type: "",
+      checked: true,
     },
     {
       day: "Thursday",
       from: new Date(),
       to: new Date(),
-      type: "",
+      checked: true,
     },
     {
       day: "Friday",
       from: new Date(),
       to: new Date(),
-      type: "",
+      checked: true,
     },
     {
       day: "Saturday",
       from: new Date(),
       to: new Date(),
-      type: "",
+      checked: true,
     },
     {
       day: "Sunday",
       from: new Date(),
       to: new Date(),
-      type: "",
+      checked: true,
     },
   ]);
 
@@ -81,13 +83,13 @@ const Section8 = (props) => {
   const handleChange = (event, i) => {
     let s = [...state];
     console.log("ll", s);
-    s[i].type = event.target.name;
+    s[i].checked = event.target.checked;
     setState(s);
     console.log(state);
   };
   const handlelistChange = (event, i) => {
     let s = [...list];
-    s[i].type = event.target.name;
+    s[i].checked = event.target.checked;
     setList(s);
   };
 
@@ -126,6 +128,38 @@ const Section8 = (props) => {
         padding: 25,
       }}
     >
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ flexGrow: 1 }}>
+          <div
+            style={{
+              borderColor: "#000",
+              borderWidth: 1,
+              borderStyle: "solid",
+              background: "#ffab00",
+              borderRadius: 7,
+              padding: 10,
+              cursor: "pointer",
+              width: 200,
+              color: "#fff",
+            }}
+          >
+            <Typography align="center" style={{ width: "100%" }}>
+              Section 8
+            </Typography>
+          </div>
+        </div>
+        <Typography style={{ fontWeight: "bold" }}>
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 7,
+            }}
+          >
+            *
+          </span>
+          Required Field
+        </Typography>
+      </div>
       <div
         style={{
           justifyContent: "center",
@@ -134,44 +168,55 @@ const Section8 = (props) => {
           flexWrap: "wrap",
         }}
       >
-        <div style={{}}>
-          <Typography style={{ fontWeight: "bold" }}>
-            Daily
-            <span
-              style={{
-                color: "#ff1744",
-                marginRight: 30,
-                alignSelf: "center",
-              }}
-            >
-              *
-            </span>
-          </Typography>
-          <Typography>Only Selected Days will be selected.</Typography>
-        </div>
-      </div>
-      {state.map((item, i) => (
-        <div
-          className="S8"
-          key={i}
-          style={{
-            display: "flex",
-            flexDirection: "row",
-            flexWrap: "wrap",
-          }}
-        >
-          <Typography style={{ marginTop: 20, padding: 10, flexGrow: 0.05 }}>
-            {item.day}
-          </Typography>
-          <Typography style={{ marginLeft: 10, marginTop: 20, padding: 10 }}>
-            from
-          </Typography>
-          <div>
+        <Typography style={{ fontWeight: "bold" }}>
+          Daily
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 30,
+              alignSelf: "center",
+            }}
+          >
+            *
+          </span>
+        </Typography>
+        <Typography>Only Selected Days will be selected.</Typography>
+        {state.map((item, i) => (
+          <div
+            className="S8"
+            key={i}
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              alignItems: "baseline",
+              marginBottom: 20,
+            }}
+          >
+            <Typography style={{ width: 100 }}>{item.day}</Typography>
+            <FormGroup>
+              <FormControlLabel
+                control={
+                  <Switch
+                    checked={item.checked}
+                    onChange={(e) => handleChange(e, i)}
+                    color="primary"
+                    name="checkedB"
+                    inputProps={{ "aria-label": "primary checkbox" + i }}
+                  />
+                }
+                label={item.checked ? "Open" : "Close"}
+              />
+            </FormGroup>
+
+            <Typography style={{ width: 80, textAlign: "center" }}>
+              from
+            </Typography>
             <MuiPickersUtilsProvider utils={DateFnsUtils}>
               <KeyboardTimePicker
-                inputVariant="filled"
+                inputVariant="standard"
                 margin="normal"
                 emptyLabel="--:--"
+                disabled={!item.checked}
                 id={"time-picker" + i}
                 value={item.from}
                 onChange={(event) => {
@@ -182,184 +227,122 @@ const Section8 = (props) => {
                 }}
               />
             </MuiPickersUtilsProvider>
-            <div style={{ display: "flex", flexDirection: "row" }}>
-              <IconButton
-                color="primary"
-                aria-label="upload picture"
-                component="span"
-              >
-                <Add
-                  style={{
-                    backgroundColor: "#ff1744",
-                    color: "#ffff",
-                    fontSize: 46,
-                  }}
-                />
-              </IconButton>
-              <IconButton
-                color="primary"
-                aria-label="upload picture"
-                component="span"
-              >
-                <Remove
-                  style={{
-                    backgroundColor: "#3d5afe",
-                    color: "#ffff",
-                    fontSize: 46,
-                  }}
-                />
-              </IconButton>
-            </div>
+            <Typography style={{ width: 80, textAlign: "center" }}>
+              to
+            </Typography>
+            <MuiPickersUtilsProvider utils={DateFnsUtils}>
+              <KeyboardTimePicker
+                margin="normal"
+                inputVariant="standard"
+                id={"time-picker" + i}
+                value={item.to}
+                disabled={!item.checked}
+                onChange={(event) => {
+                  handleDateChangeto(event, i);
+                }}
+                KeyboardButtonProps={{
+                  "aria-label": "change time",
+                }}
+              />
+            </MuiPickersUtilsProvider>
+            <Button color="primary" disabled={!item.checked}>
+              Add Hours
+            </Button>
           </div>
-
-          <Typography style={{ marginTop: 20, padding: 10 }}>to</Typography>
-          <MuiPickersUtilsProvider utils={DateFnsUtils}>
-            <KeyboardTimePicker
-              margin="normal"
-              inputVariant="filled"
-              id={"time-picker" + i}
-              value={item.to}
-              onChange={(event) => {
-                handleDateChangeto(event, i);
-              }}
-              KeyboardButtonProps={{
-                "aria-label": "change time",
-              }}
-            />
-          </MuiPickersUtilsProvider>
-
+        ))}
+        <div>
+          <Typography variant="h6" style={{ fontWeight: "bold" }}>
+            Temporarily Closed
+          </Typography>
           <FormControl component="fieldset">
             <FormGroup
               style={{
                 justifyContent: "center",
                 display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                marginTop: 20,
-                marginLeft: 10,
+                flexDirection: "column",
               }}
             >
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state[i].type === "open_24" ? true : false}
-                    onChange={(event) => {
-                      handleChange(event, i);
+                    checked={tempclose === "Temporarily Closed" ? true : false}
+                    onChange={() => {
+                      settempclose("Temporarily Closed");
                     }}
-                    name="open_24"
+                    name="Temporarily Closed"
                   />
                 }
-                label="Open 24 Hours"
+                label="Temporarily Closed"
               />
               <FormControlLabel
                 control={
                   <Checkbox
-                    checked={state[i].type === "close" ? true : false}
-                    onChange={(event) => {
-                      handleChange(event, i);
+                    checked={
+                      tempclose === "Reopen temporarily closed location"
+                        ? true
+                        : false
+                    }
+                    onChange={() => {
+                      settempclose("Reopen temporarily closed location");
                     }}
-                    name="close"
+                    name="Reopen temporarily closed location"
                   />
                 }
-                label="Close"
-              />
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    checked={state[i].type === "none" ? true : false}
-                    onChange={(event) => {
-                      handleChange(event, i);
-                    }}
-                    name="none"
-                  />
-                }
-                label="None"
+                label="Reopen temporarily closed location"
               />
             </FormGroup>
           </FormControl>
-        </div>
-      ))}
-      <div>
-        <Typography variant="h6" style={{ fontWeight: "bold" }}>
-          Temporarily Closed
-        </Typography>
-        <FormControl component="fieldset">
-          <FormGroup
-            style={{
-              justifyContent: "center",
-              display: "flex",
-              flexDirection: "column",
-              marginTop: 20,
-            }}
-          >
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={tempclose === "Temporarily Closed" ? true : false}
-                  onChange={() => {
-                    settempclose("Temporarily Closed");
-                  }}
-                  name="Temporarily Closed"
+          <Typography variant="h6" style={{ fontWeight: "bold" }}>
+            Special/Holidays Hours
+          </Typography>
+          <Typography variant="body1">
+            Only Selected dates will be updated
+          </Typography>
+          {list.map((item, i) => (
+            <div
+              className="S8"
+              key={i}
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                flexWrap: "wrap",
+                marginTop: 20,
+                alignItems: "center",
+              }}
+            >
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardDatePicker
+                  style={{ marginRight: 20 }}
+                  autoOk
+                  allowKeyboardControl={false}
+                  value={item.date}
+                  onChange={(date) => handlelistChangedate(date, i)}
                 />
-              }
-              label="Temporarily Closed"
-            />
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={
-                    tempclose === "Reopen temporarily closed location"
-                      ? true
-                      : false
+              </MuiPickersUtilsProvider>
+              <FormGroup>
+                <FormControlLabel
+                  control={
+                    <Switch
+                      checked={item.checked}
+                      onChange={(e) => handlelistChange(e, i)}
+                      color="primary"
+                      name="checkedB"
+                      inputProps={{ "aria-label": "primary checkbox" + i }}
+                    />
                   }
-                  onChange={() => {
-                    settempclose("Reopen temporarily closed location");
-                  }}
-                  name="Reopen temporarily closed location"
+                  label={item.checked ? "Open" : "Close"}
                 />
-              }
-              label="Reopen temporarily closed location"
-            />
-          </FormGroup>
-        </FormControl>
-        <Typography variant="h6" style={{ fontWeight: "bold" }}>
-          Special/Holidays Hours{" "}
-        </Typography>
-        <Typography variant="body1">
-          Only Selected dates will be updated
-        </Typography>
-        {list.map((item, i) => (
-          <div
-            className="S8"
-            key={i}
-            style={{
-              display: "flex",
-              flexDirection: "row",
-              flexWrap: "wrap",
-              marginTop: 20,
-            }}
-          >
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardDatePicker
-                style={{ padding: 10, marginTop: 5 }}
-                autoOk
-                label="Date"
-                allowKeyboardControl={false}
-                clearable
-                disableFuture
-                value={item.date}
-                onChange={(date) => handlelistChangedate(date, i)}
-              />
-            </MuiPickersUtilsProvider>
-            <Typography style={{ marginLeft: 10, marginTop: 20, padding: 10 }}>
-              from
-            </Typography>
-            <div>
+              </FormGroup>
+
+              <Typography style={{ width: 80, textAlign: "center" }}>
+                from
+              </Typography>
               <MuiPickersUtilsProvider utils={DateFnsUtils}>
                 <KeyboardTimePicker
-                  inputVariant="filled"
+                  inputVariant="standard"
                   margin="normal"
                   emptyLabel="--:--"
+                  disabled={!item.checked}
                   id={"time-picker" + i}
                   value={item.from}
                   onChange={(event) => {
@@ -370,136 +353,70 @@ const Section8 = (props) => {
                   }}
                 />
               </MuiPickersUtilsProvider>
-              <div style={{ display: "flex", flexDirection: "row" }}>
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <Add
-                    style={{
-                      backgroundColor: "#ff1744",
-                      color: "#ffff",
-                      fontSize: 46,
-                    }}
-                  />
-                </IconButton>
-                <IconButton
-                  color="primary"
-                  aria-label="upload picture"
-                  component="span"
-                >
-                  <Remove
-                    style={{
-                      backgroundColor: "#3d5afe",
-                      color: "#ffff",
-                      fontSize: 46,
-                    }}
-                  />
-                </IconButton>
-              </div>
-            </div>
-
-            <Typography style={{ marginTop: 20, padding: 10 }}>to</Typography>
-            <MuiPickersUtilsProvider utils={DateFnsUtils}>
-              <KeyboardTimePicker
-                margin="normal"
-                inputVariant="filled"
-                id={"time-picker" + i}
-                value={item.to}
-                onChange={(event) => {
-                  handlelistDateChangeto(event, i);
-                }}
-                KeyboardButtonProps={{
-                  "aria-label": "change time",
-                }}
-              />
-            </MuiPickersUtilsProvider>
-
-            <FormControl component="fieldset">
-              <FormGroup
-                style={{
-                  justifyContent: "center",
-                  display: "flex",
-                  flexDirection: "row",
-                  alignItems: "center",
-                  marginTop: 20,
-                  marginLeft: 10,
-                }}
+              <Typography style={{ width: 80, textAlign: "center" }}>
+                to
+              </Typography>
+              <MuiPickersUtilsProvider utils={DateFnsUtils}>
+                <KeyboardTimePicker
+                  margin="normal"
+                  inputVariant="standard"
+                  id={"time-picker" + i}
+                  value={item.to}
+                  disabled={!item.checked}
+                  onChange={(event) => {
+                    handlelistDateChangeto(event, i);
+                  }}
+                  KeyboardButtonProps={{
+                    "aria-label": "change time",
+                  }}
+                />
+              </MuiPickersUtilsProvider>
+              <Button color="primary" disabled={!item.checked}>
+                Add Hours
+              </Button>
+              <IconButton
+                color="primary"
+                aria-label="upload picture"
+                component="span"
+                onClick={() =>
+                  setList(list.filter((item, index) => index !== i))
+                }
               >
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={list[i].type === "open_24" ? true : false}
-                      onChange={(event) => {
-                        handlelistChange(event, i);
-                      }}
-                      name="open_24"
-                    />
-                  }
-                  label="Open 24 Hours"
+                <Close
+                  style={{
+                    backgroundColor: "#ff1744",
+                    color: "#ffff",
+                    fontSize: 26,
+                  }}
                 />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={list[i].type === "close" ? true : false}
-                      onChange={(event) => {
-                        handlelistChange(event, i);
-                      }}
-                      name="close"
-                    />
-                  }
-                  label="Close"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox
-                      checked={list[i].type === "none" ? true : false}
-                      onChange={(event) => {
-                        handlelistChange(event, i);
-                      }}
-                      name="none"
-                    />
-                  }
-                  label="None"
-                />
-              </FormGroup>
-            </FormControl>
-            <IconButton
-              color="primary"
-              aria-label="upload picture"
-              component="span"
-              onClick={() => setList(list.filter((item, index) => index !== i))}
-            >
-              <Close
-                style={{
-                  backgroundColor: "#ff1744",
-                  color: "#ffff",
-                  fontSize: 46,
-                }}
-              />
-            </IconButton>
-          </div>
-        ))}
-        <IconButton
-          color="primary"
-          aria-label="upload picture"
-          component="span"
-          onClick={() =>
-            setList([
-              ...list,
-              { date: new Date(), from: new Date(), to: new Date(), type: "" },
-            ])
-          }
-        >
-          <Add
-            style={{
-              backgroundColor: "#ff1744",
-              color: "#ffff",
-              fontSize: 46,
-            }}
-          />
-        </IconButton>
+              </IconButton>
+            </div>
+          ))}
+          <IconButton
+            color="primary"
+            aria-label="upload picture"
+            component="span"
+            onClick={() =>
+              setList([
+                ...list,
+                {
+                  date: new Date(),
+                  from: new Date(),
+                  to: new Date(),
+                  checked: true,
+                },
+              ])
+            }
+          >
+            <Add
+              style={{
+                backgroundColor: "#ff1744",
+                color: "#ffff",
+                fontSize: 26,
+              }}
+            />
+          </IconButton>
+        </div>
       </div>
       <div
         style={{

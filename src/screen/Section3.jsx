@@ -23,17 +23,17 @@ const Section3 = (props) => {
 
   const sectionschema = Yup.object({
     about: Yup.string(),
-    call_tracking_phone_number: Yup.number(),
+    call_tracking_phone_number: Yup.number().required(),
     UTM_tracking_website_URL: Yup.string(),
-    bing_call_tracking_phone_number: Yup.number(),
+    bing_call_tracking_phone_number: Yup.number().required(),
     bing_UTM_tracking_website_URL: Yup.string(),
     cover_photo: null,
     bing_category: Yup.string().required(),
     additional_bing_categories: Yup.string().required(),
     apple_category: Yup.string().required(),
     additional_apple_categories: Yup.string().required(),
-    apple_coordinates_lat: Yup.number(),
-    apple_coordinates_long: Yup.number(),
+    apple_coordinates_lat: Yup.number().required(),
+    apple_coordinates_long: Yup.number().required(),
   });
 
   const [auth, setAuth] = useState();
@@ -90,6 +90,14 @@ const Section3 = (props) => {
       label: (
         <Typography style={{ fontWeight: "bold" }}>
           Call Tracking Phone Number
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 7,
+            }}
+          >
+            *
+          </span>
         </Typography>
       ),
       component: (
@@ -273,6 +281,14 @@ const Section3 = (props) => {
       label: (
         <Typography style={{ fontWeight: "bold" }}>
           Call Tracking Phone Number
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 7,
+            }}
+          >
+            *
+          </span>
         </Typography>
       ),
       component: (
@@ -372,6 +388,14 @@ const Section3 = (props) => {
       label: (
         <Typography style={{ fontWeight: "bold" }}>
           Apple Coordinates
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 7,
+            }}
+          >
+            *
+          </span>
         </Typography>
       ),
       component: (
@@ -433,12 +457,26 @@ const Section3 = (props) => {
           </Typography>
         </div>
       </div>
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      >
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ flexGrow: 1 }}>
+          <div
+            style={{
+              borderColor: "#000",
+              borderWidth: 1,
+              borderStyle: "solid",
+              background: "#ffab00",
+              borderRadius: 7,
+              padding: 10,
+              cursor: "pointer",
+              width: 200,
+              color: "#fff",
+            }}
+          >
+            <Typography align="center" style={{ width: "100%" }}>
+              Section 3
+            </Typography>
+          </div>
+        </div>
         <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{

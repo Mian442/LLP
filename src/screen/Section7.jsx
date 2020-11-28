@@ -18,7 +18,7 @@ const Section7 = (props) => {
     additional_categories: "",
     call_tracking_phone_number: "",
     UTM_tracking_website_URL: "",
-    attributes: "",
+    attributes: "United States",
     appointment_URL: "",
     google_maps_pin: "",
   });
@@ -63,17 +63,31 @@ const Section7 = (props) => {
         padding: 25,
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      >
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ flexGrow: 1 }}>
+          <div
+            style={{
+              borderColor: "#000",
+              borderWidth: 1,
+              borderStyle: "solid",
+              background: "#ffab00",
+              borderRadius: 7,
+              padding: 10,
+              cursor: "pointer",
+              width: 200,
+              color: "#fff",
+            }}
+          >
+            <Typography align="center" style={{ width: "100%" }}>
+              Section 7
+            </Typography>
+          </div>
+        </div>
         <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 7,
             }}
           >
             *
@@ -88,6 +102,7 @@ const Section7 = (props) => {
           flexWrap: "wrap",
           flexDirection: "row",
           justifyContent: "space-evenly",
+          margin: 20,
         }}
       >
         <div
@@ -135,11 +150,11 @@ const Section7 = (props) => {
               }}
             >
               <option aria-label="None" value="United State">
-                United State
+                United States
               </option>
-              <option value={10}>Ten</option>
-              <option value={20}>Twenty</option>
-              <option value={30}>Thirty</option>
+              <option value="United Kingdom">United Kingdom</option>
+              <option value="Australia">Australia</option>
+              <option value="Canada">Canada</option>
             </Select>
           </FormControl>
           <Typography style={{ fontWeight: "bold" }}>

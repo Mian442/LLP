@@ -20,13 +20,13 @@
 .MuiFilledInput-input {
   padding: unset !important;
 }
-.section8 .MuiFilledInput-root {
+.section8 .MuiInputBase-root {
   height: 50px;
-  width: 150px;
+  width: 180px;
   padding-left: 10px;
 }
 .section7 {
-  width: 57%;
+  width: 47%;
 }
 .MuiInputBase-root {
   height: auto;
@@ -51,7 +51,7 @@
 }
 @media screen and (min-width: 768px) {
   .section7 {
-    width: 57%;
+    width: 47%;
   }
 }
 @media screen and (max-width: 768px) {

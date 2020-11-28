@@ -37,12 +37,26 @@ const Section6 = (props) => {
         padding: 25,
       }}
     >
-      <div
-        style={{
-          display: "flex",
-          justifyContent: "flex-end",
-        }}
-      >
+      <div style={{ display: "flex", justifyContent: "flex-end" }}>
+        <div style={{ flexGrow: 1 }}>
+          <div
+            style={{
+              borderColor: "#000",
+              borderWidth: 1,
+              borderStyle: "solid",
+              background: "#ffab00",
+              borderRadius: 7,
+              padding: 10,
+              cursor: "pointer",
+              width: 200,
+              color: "#fff",
+            }}
+          >
+            <Typography align="center" style={{ width: "100%" }}>
+              Section 6
+            </Typography>
+          </div>
+        </div>
         <Typography style={{ fontWeight: "bold" }}>
           <span
             style={{
@@ -55,7 +69,7 @@ const Section6 = (props) => {
           Required Field
         </Typography>
       </div>
-      <div>
+      <div style={{ marginTop: 20 }}>
         <Typography style={{ fontWeight: "bold" }}>
           Additional Keyword Tracking
         </Typography>
@@ -275,7 +289,7 @@ const Section6 = (props) => {
             width: "100%",
           }}
           onClick={() => {
-            if (state) {
+            if (total.length > 0 && total.length + total2.length < 20) {
               firebase.default
                 .firestore()
                 .collection(auth.uid)
@@ -286,7 +300,7 @@ const Section6 = (props) => {
                   props.history.push("/additional");
                 });
             } else {
-              props.history.push("/additional");
+              toast.error("Keywords are required!");
             }
           }}
         >
