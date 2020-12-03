@@ -33,7 +33,7 @@ const Credentials = (props) => {
     if (GET_SECTION(Actionlist.SECTION_9) !== null) {
       setState(GET_SECTION(Actionlist.SECTION_9));
     }
-  }, []);
+  }, [props]);
   const handleChange = (event) => {
     const name = event.target.name;
     console.log(name);

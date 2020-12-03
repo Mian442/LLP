@@ -56,8 +56,12 @@ const Section4 = (props) => {
   });
 
   const [auth, setAuth] = useState();
+  const [fill, setFill] = useState(false);
+  const [sec_1, setSec_1] = useState(null);
 
   useEffect(() => {
+    setSec_1(GET_SECTION(Actionlist.SECTION_1));
+    setFill(true);
     firebase.default.auth().onAuthStateChanged((user) => {
       if (!user) {
         props.history.push("/");
@@ -68,21 +72,25 @@ const Section4 = (props) => {
     if (GET_SECTION(Actionlist.SECTION_4) !== null) {
       setState(GET_SECTION(Actionlist.SECTION_4));
     } else {
-      let auto = GET_SECTION(Actionlist.SECTION_1);
-      let s = { ...state };
-      s.business_email = auto.business_email;
-      s.business_owner = auto.owner_name;
-      s.business_name = auto.business_name;
-      s.street_address = auto.business_address;
-      s.state = auto.state;
-      s.zip = auto.zip;
-      s.suite = auto.suite;
-      s.city = auto.city;
-      s.main_phone = auto.business_phone;
-      setState(s);
+      setFill(true);
     }
-  }, []);
+  }, [props]);
 
+  if (fill) {
+    let auto = sec_1;
+    let s = { ...state };
+    s.business_email = auto?.business_email;
+    s.business_owner = auto?.owner_name;
+    s.business_name = auto?.business_name;
+    s.street_address = auto?.business_address;
+    s.state = auto?.state;
+    s.zip = auto?.zip;
+    s.suite = auto?.suite;
+    s.city = auto?.city;
+    s.main_phone = auto?.business_phone;
+    setState(s);
+    setFill(false);
+  }
   const generate = ["Visa", "Mastercard", "Discover", "Cash", "Amex", "Check"];
 
   const handleChange = (event) => {
@@ -541,7 +549,7 @@ const Section4 = (props) => {
           onChange={handleChange}
           inputProps={{
             name: "business_fax",
-            id: "outlined-business_email-native-simple",
+            id: "outlined-business_fax-native-simple",
           }}
         />
       ),

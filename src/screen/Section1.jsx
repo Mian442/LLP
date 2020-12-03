@@ -20,7 +20,7 @@ const PaymentScreen = (props) => {
     last_name: "",
     billing_address_line_1: "",
     billing_address_line_2: "",
-    credit_number: null,
+    credit_number: "",
     state: "",
     zip_code: "",
     email: "",
@@ -103,7 +103,7 @@ const PaymentScreen = (props) => {
     if (GET_SECTION(Actionlist.SECTION_2) !== null) {
       setState(GET_SECTION(Actionlist.SECTION_2));
     }
-  }, []);
+  }, [props]);
 
   const sectionschema = Yup.object({
     country: Yup.string().required(),
@@ -268,7 +268,7 @@ const PaymentScreen = (props) => {
               id: "outlined-csc-native-simple",
             }}
           />
-          <Link>
+          <Link to="#">
             <Typography variant="subtitle2" style={{ paddingLeft: 7 }}>
               What's This?
             </Typography>
@@ -339,7 +339,7 @@ const PaymentScreen = (props) => {
               id: "outlined-state-native-simple",
             }}
           >
-            <option>Select</option>
+            <option aria-label="None">Select</option>
             {list.map((item, index) => (
               <option key={index} value={item}>
                 {item}

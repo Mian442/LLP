@@ -58,7 +58,7 @@ const Section7 = (props) => {
     if (GET_SECTION(Actionlist.SECTION_7) !== null) {
       setState(GET_SECTION(Actionlist.SECTION_7));
     }
-  }, []);
+  }, [props]);
 
   return (
     <div

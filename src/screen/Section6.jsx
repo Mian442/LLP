@@ -19,7 +19,6 @@ const Section6 = (props) => {
   };
 
   const [auth, setAuth] = useState();
-
   useEffect(() => {
     firebase.default.auth().onAuthStateChanged((user) => {
       if (!user) {
@@ -49,13 +48,13 @@ const Section6 = (props) => {
       } else {
         let a = GET_SECTION(Actionlist.SECTION_6);
         let b = [];
-        for (var obj in a) {
-          b.push(obj);
+        for (var obj2 in a) {
+          b.push(obj2);
         }
         setTotal(b);
       }
     }
-  }, []);
+  }, [props]);
   return (
     <div
       style={{

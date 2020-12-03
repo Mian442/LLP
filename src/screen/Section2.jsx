@@ -58,7 +58,7 @@ const PaymentInformation = (props) => {
     if (GET_SECTION(Actionlist.SECTION_1) !== null) {
       setState(GET_SECTION(Actionlist.SECTION_1));
     }
-  }, []);
+  }, [props]);
 
   const form = [
     {

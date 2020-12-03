@@ -19,8 +19,8 @@ const Section3 = (props) => {
     additional_bing_categories: "",
     apple_category: "",
     additional_apple_categories: "",
-    apple_coordinates_lat: null,
-    apple_coordinates_long: null,
+    apple_coordinates_lat: "",
+    apple_coordinates_long: "",
   });
 
   const sectionschema = Yup.object({
@@ -51,7 +51,7 @@ const Section3 = (props) => {
     if (GET_SECTION(Actionlist.SECTION_3) !== null) {
       setState(GET_SECTION(Actionlist.SECTION_3));
     }
-  }, []);
+  }, [props]);
 
   const getBase64 = (file, cb) => {
     let reader = new FileReader();
@@ -134,7 +134,7 @@ const Section3 = (props) => {
           onChange={handleChange}
           inputProps={{
             name: "UTM_tracking_website_URL",
-            id: "outlined-Primary-Website-native-simple",
+            id: "outlined-UTM_tracking_website_URL-native-simple",
           }}
         />
       ),
@@ -305,7 +305,7 @@ const Section3 = (props) => {
           onChange={handleChange}
           inputProps={{
             name: "bing_call_tracking_phone_number",
-            id: "outlined-call_tracking_phone_number-native-simple",
+            id: "outlined--BING-call_tracking_phone_number-native-simple",
           }}
         />
       ),
@@ -325,7 +325,7 @@ const Section3 = (props) => {
           onChange={handleChange}
           inputProps={{
             name: "bing_UTM_tracking_website_URL",
-            id: "outlined-Primary-Website-native-simple",
+            id: "outlined-bing_UTM_tracking_website_URL-simple",
           }}
         />
       ),
@@ -356,7 +356,7 @@ const Section3 = (props) => {
           onChange={handleChange}
           inputProps={{
             name: "apple_category",
-            id: "outlined-bing_category-native-simple",
+            id: "outlined-APPLE_category-native-simple",
           }}
         />
       ),
@@ -384,7 +384,7 @@ const Section3 = (props) => {
           onChange={handleChange}
           inputProps={{
             name: "additional_apple_categories",
-            id: "outlined-additional_bing_categories-native-simple",
+            id: "outlined-additional_APPLE_categories-native-simple",
           }}
         />
       ),

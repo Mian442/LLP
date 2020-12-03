@@ -34,7 +34,7 @@ const Section5 = (props) => {
     if (GET_SECTION(Actionlist.SECTION_5) !== null) {
       setState(GET_SECTION(Actionlist.SECTION_5));
     }
-  }, []);
+  }, [props]);
 
   const form = [
     {

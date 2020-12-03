@@ -86,7 +86,7 @@ const Section8 = (props) => {
       settempclose(i.temporarily);
       setList(i.special_Holiday);
     }
-  }, []);
+  }, [props]);
 
   const handleChange = (event, i) => {
     let s = [...state];
