@@ -4,6 +4,8 @@ import React, { useEffect, useState } from "react";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import { GET_SECTION, SET_SECTION } from "../Actions/Actions";
+import * as Actionlist from "../Actions/ActionsList";
 const Credentials = (props) => {
   const [state, setState] = React.useState({
     facebook_email: "",
@@ -28,8 +30,10 @@ const Credentials = (props) => {
         setAuth(user);
       }
     });
-  });
-
+    if (GET_SECTION(Actionlist.SECTION_9) !== null) {
+      setState(GET_SECTION(Actionlist.SECTION_9));
+    }
+  }, []);
   const handleChange = (event) => {
     const name = event.target.name;
     console.log(name);
@@ -225,6 +229,7 @@ const Credentials = (props) => {
             transform: "rotateZ(180deg)",
           }}
           onClick={() => {
+            SET_SECTION(Actionlist.SECTION_9, state);
             props.history.push("/daily");
           }}
         >
@@ -250,7 +255,10 @@ const Credentials = (props) => {
                   .doc("section9")
                   .set(u)
                   .then((res) => {
-                    toast.success("Section added");
+                    toast.success(
+                      SET_SECTION(Actionlist.SECTION_9, state) +
+                        " Adding Section 9"
+                    );
                     props.history.push("/menu");
                   });
               })

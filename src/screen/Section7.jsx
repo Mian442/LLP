@@ -10,6 +10,8 @@ import "./Screen.css";
 import { Add } from "@material-ui/icons";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
+import { GET_SECTION, SET_SECTION } from "../Actions/Actions";
+import * as Actionlist from "../Actions/ActionsList";
 const Section7 = (props) => {
   const [state, setState] = useState({
     profile_photo: null,
@@ -53,7 +55,10 @@ const Section7 = (props) => {
         setAuth(user);
       }
     });
-  });
+    if (GET_SECTION(Actionlist.SECTION_7) !== null) {
+      setState(GET_SECTION(Actionlist.SECTION_7));
+    }
+  }, []);
 
   return (
     <div
@@ -500,6 +505,7 @@ const Section7 = (props) => {
             transform: "rotateZ(180deg)",
           }}
           onClick={() => {
+            SET_SECTION(Actionlist.SECTION_7, state);
             props.history.push("/keywords");
           }}
         >
@@ -523,7 +529,10 @@ const Section7 = (props) => {
                 .doc("section7")
                 .set(state)
                 .then((res) => {
-                  toast.success("Section added");
+                  toast.success(
+                    SET_SECTION(Actionlist.SECTION_7, state) +
+                      " Adding Section 7"
+                  );
                   props.history.push("/daily");
                 });
             } else {

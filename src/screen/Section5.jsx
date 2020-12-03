@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Add } from "@material-ui/icons";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
-
+import { GET_SECTION, SET_SECTION } from "../Actions/Actions";
+import * as Actionlist from "../Actions/ActionsList";
 const Section5 = (props) => {
   const [state, setState] = useState({
     set_logo: null,
@@ -30,7 +31,10 @@ const Section5 = (props) => {
         setAuth(user);
       }
     });
-  });
+    if (GET_SECTION(Actionlist.SECTION_5) !== null) {
+      setState(GET_SECTION(Actionlist.SECTION_5));
+    }
+  }, []);
 
   const form = [
     {
@@ -366,6 +370,7 @@ const Section5 = (props) => {
             transform: "rotateZ(180deg)",
           }}
           onClick={() => {
+            SET_SECTION(Actionlist.SECTION_5, state);
             props.history.push("/business_description");
           }}
         >
@@ -389,7 +394,10 @@ const Section5 = (props) => {
                 .doc("section5")
                 .set(state)
                 .then((res) => {
-                  toast.success("Section added");
+                  toast.success(
+                    SET_SECTION(Actionlist.SECTION_5, state) +
+                      " Adding Section 5"
+                  );
                   props.history.push("/keywords");
                 });
             } else {

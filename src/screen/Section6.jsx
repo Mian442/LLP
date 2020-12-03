@@ -4,7 +4,8 @@ import React, { useEffect, useState } from "react";
 import { Add, Delete } from "@material-ui/icons";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
-
+import { GET_SECTION, SET_SECTION } from "../Actions/Actions";
+import * as Actionlist from "../Actions/ActionsList";
 const Section6 = (props) => {
   const [state, setState] = useState();
   const [total, setTotal] = useState([]);
@@ -27,8 +28,34 @@ const Section6 = (props) => {
         setAuth(user);
       }
     });
-  });
-
+    if (GET_SECTION(Actionlist.SECTION_6) !== null) {
+      setState(GET_SECTION(Actionlist.SECTION_6));
+      let l = Object.keys(GET_SECTION(Actionlist.SECTION_6)).length;
+      if (l > 9) {
+        let a = GET_SECTION(Actionlist.SECTION_6);
+        let b = [];
+        let c = [];
+        let d = 0;
+        for (var obj in a) {
+          if (d < 10) {
+            b.push(obj);
+          } else {
+            c.push(obj);
+          }
+          d = d + 1;
+        }
+        setTotal(b);
+        setTotal2(c);
+      } else {
+        let a = GET_SECTION(Actionlist.SECTION_6);
+        let b = [];
+        for (var obj in a) {
+          b.push(obj);
+        }
+        setTotal(b);
+      }
+    }
+  }, []);
   return (
     <div
       style={{
@@ -172,10 +199,7 @@ const Section6 = (props) => {
                   aria-label="upload picture"
                   component="span"
                   onClick={() => {
-                    setTotal2([
-                      ...total2,
-                      total2.filter((val, i) => i !== index),
-                    ]);
+                    setTotal2(total2.filter((val, i) => i !== index));
                   }}
                 >
                   <Delete
@@ -273,6 +297,7 @@ const Section6 = (props) => {
             transform: "rotateZ(180deg)",
           }}
           onClick={() => {
+            SET_SECTION(Actionlist.SECTION_6, state);
             props.history.push("/cover");
           }}
         >
@@ -296,7 +321,10 @@ const Section6 = (props) => {
                 .doc("section6")
                 .set(state)
                 .then((res) => {
-                  toast.success("Section added");
+                  toast.success(
+                    SET_SECTION(Actionlist.SECTION_6, state) +
+                      " Adding Section 6"
+                  );
                   props.history.push("/additional");
                 });
             } else {

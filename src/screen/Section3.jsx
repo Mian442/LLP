@@ -5,6 +5,8 @@ import { Add } from "@material-ui/icons";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import { GET_SECTION, SET_SECTION } from "../Actions/Actions";
+import * as Actionlist from "../Actions/ActionsList";
 const Section3 = (props) => {
   const [state, setState] = useState({
     about: "",
@@ -32,8 +34,8 @@ const Section3 = (props) => {
     additional_bing_categories: Yup.string().required(),
     apple_category: Yup.string().required(),
     additional_apple_categories: Yup.string().required(),
-    apple_coordinates_lat: Yup.number().required(),
-    apple_coordinates_long: Yup.number().required(),
+    apple_coordinates_lat: Yup.string(),
+    apple_coordinates_long: Yup.string(),
   });
 
   const [auth, setAuth] = useState();
@@ -46,7 +48,10 @@ const Section3 = (props) => {
         setAuth(user);
       }
     });
-  });
+    if (GET_SECTION(Actionlist.SECTION_3) !== null) {
+      setState(GET_SECTION(Actionlist.SECTION_3));
+    }
+  }, []);
 
   const getBase64 = (file, cb) => {
     let reader = new FileReader();
@@ -55,7 +60,7 @@ const Section3 = (props) => {
       cb(reader.result);
     };
     reader.onerror = function (error) {
-      console.log("Error: ", error);
+      toast.error("Error: " + error);
     };
   };
 
@@ -167,7 +172,7 @@ const Section3 = (props) => {
               htmlFor="icon-button-file2"
               style={{ display: "flex", justifyContent: "center" }}
             >
-              {state.cover_photo === null ? (
+              {state?.cover_photo === null ? (
                 <IconButton
                   color="primary"
                   aria-label="upload picture"
@@ -375,7 +380,7 @@ const Section3 = (props) => {
           variant="filled"
           size="small"
           placeholder="Search…."
-          value={state.additional_apple__categories}
+          value={state.additional_apple_categories}
           onChange={handleChange}
           inputProps={{
             name: "additional_apple_categories",
@@ -388,14 +393,6 @@ const Section3 = (props) => {
       label: (
         <Typography style={{ fontWeight: "bold" }}>
           Apple Coordinates
-          <span
-            style={{
-              color: "#ff1744",
-              marginRight: 7,
-            }}
-          >
-            *
-          </span>
         </Typography>
       ),
       component: (
@@ -634,6 +631,7 @@ const Section3 = (props) => {
             transform: "rotateZ(180deg)",
           }}
           onClick={() => {
+            SET_SECTION(Actionlist.SECTION_3, state);
             props.history.push("/payment");
           }}
         >
@@ -659,7 +657,10 @@ const Section3 = (props) => {
                   .doc("section3")
                   .set(u)
                   .then((res) => {
-                    toast.success("Section added");
+                    toast.success(
+                      SET_SECTION(Actionlist.SECTION_3, state) +
+                        " Adding Section 3"
+                    );
                     props.history.push("/business_description");
                   });
               })

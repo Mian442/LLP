@@ -19,6 +19,8 @@ import {
 import { Add, Close } from "@material-ui/icons";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
+import { GET_SECTION, SET_SECTION } from "../Actions/Actions";
+import * as Actionlist from "../Actions/ActionsList";
 const Section8 = (props) => {
   const [state, setState] = useState([
     {
@@ -78,7 +80,13 @@ const Section8 = (props) => {
         setAuth(user);
       }
     });
-  });
+    if (GET_SECTION(Actionlist.SECTION_8) !== null) {
+      let i = GET_SECTION(Actionlist.SECTION_8);
+      setState(i.daily);
+      settempclose(i.temporarily);
+      setList(i.special_Holiday);
+    }
+  }, []);
 
   const handleChange = (event, i) => {
     let s = [...state];
@@ -429,6 +437,12 @@ const Section8 = (props) => {
             transform: "rotateZ(180deg)",
           }}
           onClick={() => {
+            let data = {
+              daily: state,
+              temporarily: tempclose,
+              special_Holiday: list,
+            };
+            SET_SECTION(Actionlist.SECTION_8, data);
             props.history.push("/additional");
           }}
         >
@@ -456,7 +470,9 @@ const Section8 = (props) => {
               .doc("section8")
               .set(data)
               .then((res) => {
-                toast.success("Section added");
+                toast.success(
+                  SET_SECTION(Actionlist.SECTION_8, data) + " Adding Section 8"
+                );
                 props.history.push("/credentials");
               });
           }}

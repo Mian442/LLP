@@ -10,6 +10,8 @@ import React, { useEffect, useState } from "react";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
+import { GET_SECTION, SET_SECTION } from "../Actions/Actions";
+import * as Actionlist from "../Actions/ActionsList";
 const Section4 = (props) => {
   const [state, setState] = useState({
     primary_category: "",
@@ -63,7 +65,23 @@ const Section4 = (props) => {
         setAuth(user);
       }
     });
-  });
+    if (GET_SECTION(Actionlist.SECTION_4) !== null) {
+      setState(GET_SECTION(Actionlist.SECTION_4));
+    } else {
+      let auto = GET_SECTION(Actionlist.SECTION_1);
+      let s = { ...state };
+      s.business_email = auto.business_email;
+      s.business_owner = auto.owner_name;
+      s.business_name = auto.business_name;
+      s.street_address = auto.business_address;
+      s.state = auto.state;
+      s.zip = auto.zip;
+      s.suite = auto.suite;
+      s.city = auto.city;
+      s.main_phone = auto.business_phone;
+      setState(s);
+    }
+  }, []);
 
   const generate = ["Visa", "Mastercard", "Discover", "Cash", "Amex", "Check"];
 
@@ -124,7 +142,7 @@ const Section4 = (props) => {
           variant="filled"
           size="small"
           placeholder="Business Name"
-          value={state.BName}
+          value={state.business_name}
           onChange={handleChange}
           inputProps={{
             name: "business_name",
@@ -695,6 +713,7 @@ const Section4 = (props) => {
             transform: "rotateZ(180deg)",
           }}
           onClick={() => {
+            SET_SECTION(Actionlist.SECTION_4, state);
             props.history.push("/categories");
           }}
         >
@@ -720,7 +739,10 @@ const Section4 = (props) => {
                   .doc("section4")
                   .set(u)
                   .then((res) => {
-                    toast.success("Section added");
+                    toast.success(
+                      SET_SECTION(Actionlist.SECTION_4, state) +
+                        " Adding Section 4"
+                    );
                     props.history.push("/cover");
                   });
               })

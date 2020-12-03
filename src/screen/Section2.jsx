@@ -4,9 +4,10 @@ import React, { useEffect, useState } from "react";
 import * as firebase from "firebase";
 import { toast } from "react-toastify";
 import * as Yup from "yup";
-
+import { GET_SECTION, SET_SECTION } from "../Actions/Actions";
+import * as Actionlist from "../Actions/ActionsList";
 const PaymentInformation = (props) => {
-  const [state, setState] = React.useState({
+  let data = {
     owner_name: "",
     business_name: "",
     business_email: "",
@@ -19,7 +20,8 @@ const PaymentInformation = (props) => {
     Username: "",
     Password: "",
     CPassword: "",
-  });
+  };
+  const [state, setState] = useState(data);
   const [auth, setAuth] = useState();
 
   const handleChange = (event) => {
@@ -53,7 +55,11 @@ const PaymentInformation = (props) => {
         setAuth(user);
       }
     });
-  });
+    if (GET_SECTION(Actionlist.SECTION_1) !== null) {
+      setState(GET_SECTION(Actionlist.SECTION_1));
+    }
+  }, []);
+
   const form = [
     {
       label: (
@@ -74,7 +80,7 @@ const PaymentInformation = (props) => {
           variant="filled"
           size="small"
           placeholder="Owner Name"
-          value={state.owner_name}
+          value={state?.owner_name}
           onChange={handleChange}
           inputProps={{
             name: "owner_name",
@@ -102,7 +108,7 @@ const PaymentInformation = (props) => {
           variant="filled"
           size="small"
           placeholder="Business Name"
-          value={state.business_name}
+          value={state?.business_name}
           onChange={handleChange}
           inputProps={{
             name: "business_name",
@@ -130,7 +136,7 @@ const PaymentInformation = (props) => {
           variant="filled"
           size="small"
           placeholder="Business Email"
-          value={state.business_email}
+          value={state?.business_email}
           onChange={handleChange}
           inputProps={{
             name: "business_email",
@@ -158,7 +164,7 @@ const PaymentInformation = (props) => {
           variant="filled"
           size="small"
           placeholder="Business Phone"
-          value={state.business_phone}
+          value={state?.business_phone}
           onChange={handleChange}
           inputProps={{
             name: "business_phone",
@@ -176,7 +182,7 @@ const PaymentInformation = (props) => {
           variant="filled"
           size="small"
           placeholder="Business Address"
-          value={state.business_address}
+          value={state?.business_address}
           onChange={handleChange}
           inputProps={{
             name: "business_address",
@@ -192,7 +198,7 @@ const PaymentInformation = (props) => {
           variant="filled"
           size="small"
           placeholder="Suite"
-          value={state.suite}
+          value={state?.suite}
           onChange={handleChange}
           inputProps={{
             name: "suite",
@@ -208,7 +214,7 @@ const PaymentInformation = (props) => {
           variant="filled"
           size="small"
           placeholder="City"
-          value={state.city}
+          value={state?.city}
           onChange={handleChange}
           inputProps={{
             name: "city",
@@ -224,7 +230,7 @@ const PaymentInformation = (props) => {
           variant="filled"
           size="small"
           placeholder="State"
-          value={state.state}
+          value={state?.state}
           onChange={handleChange}
           inputProps={{
             name: "state",
@@ -240,7 +246,7 @@ const PaymentInformation = (props) => {
           variant="filled"
           size="small"
           placeholder="Zip"
-          value={state.zip}
+          value={state?.zip}
           onChange={handleChange}
           inputProps={{
             name: "zip",
@@ -271,7 +277,7 @@ const PaymentInformation = (props) => {
           variant="filled"
           size="small"
           placeholder="Username"
-          value={state.OName}
+          value={state?.Username}
           onChange={handleChange}
           inputProps={{
             name: "Username",
@@ -298,7 +304,7 @@ const PaymentInformation = (props) => {
         <TextField
           variant="filled"
           size="small"
-          value={state.Password}
+          value={state?.Password}
           type="password"
           placeholder="Password"
           onChange={handleChange}
@@ -327,7 +333,7 @@ const PaymentInformation = (props) => {
         <TextField
           variant="filled"
           size="small"
-          value={state.CPassword}
+          value={state?.CPassword}
           type="password"
           placeholder="Confirm Password"
           onChange={handleChange}
@@ -460,7 +466,10 @@ const PaymentInformation = (props) => {
                 .doc("section1")
                 .set(u)
                 .then((res) => {
-                  toast.success("Section added");
+                  toast.success(
+                    SET_SECTION(Actionlist.SECTION_1, state) +
+                      " Adding Section 1"
+                  );
                   props.history.push("/payment");
                 });
             })
