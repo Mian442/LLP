@@ -1,10 +1,4 @@
-import {
-  Button,
-  FormControl,
-  Select,
-  TextField,
-  Typography,
-} from "@material-ui/core";
+import { FormControl, Select, TextField, Typography } from "@material-ui/core";
 import "./Screen.css";
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
@@ -510,32 +504,6 @@ const PaymentScreen = (props) => {
               </div>
             </div>
           ))}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "flex-end",
-              marginLeft: 160,
-              marginTop: 60,
-            }}
-          >
-            <Button
-              variant="contained"
-              color="secondary"
-              style={{
-                backgroundColor: "#ffab00",
-                color: "#000",
-                width: 300,
-                margin: 10,
-                fontWeight: "bold",
-                fontSize: 15,
-              }}
-              onClick={() => {
-                console.log(state);
-              }}
-            >
-              Preview Order and Continue
-            </Button>
-          </div>
         </div>
         <div
           style={{
@@ -555,6 +523,14 @@ const PaymentScreen = (props) => {
                 fontSize: 22,
               }}
             >
+              <span
+                style={{
+                  color: "#ff1744",
+                  marginRight: 7,
+                }}
+              >
+                *
+              </span>
               Select Your Billing Plan
             </Typography>
             <div

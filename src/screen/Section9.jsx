@@ -49,7 +49,7 @@ const Credentials = (props) => {
         <TextField
           variant="filled"
           size="small"
-          placeholder="Email Address"
+          placeholder="Email Address *"
           value={state.facebook_email}
           onChange={handleChange}
           inputProps={{
@@ -65,7 +65,7 @@ const Credentials = (props) => {
           variant="filled"
           size="small"
           type="password"
-          placeholder="Password"
+          placeholder="Password *"
           value={state.facebook_password}
           onChange={handleChange}
           inputProps={{
@@ -83,7 +83,7 @@ const Credentials = (props) => {
         <TextField
           variant="filled"
           size="small"
-          placeholder="Email Address"
+          placeholder="Email Address *"
           value={state.google_email}
           onChange={handleChange}
           inputProps={{
@@ -99,7 +99,7 @@ const Credentials = (props) => {
           variant="filled"
           size="small"
           type="password"
-          placeholder="Password"
+          placeholder="Password *"
           value={state.google_password}
           onChange={handleChange}
           inputProps={{
@@ -168,6 +168,14 @@ const Credentials = (props) => {
               align="center"
               style={{ width: "100%", margin: 10, fontWeight: "bold" }}
             >
+              <span
+                style={{
+                  color: "#ff1744",
+                  marginRight: 7,
+                }}
+              >
+                *
+              </span>
               Personal Facebook Login Credentials
             </Typography>
             <div>
@@ -198,6 +206,14 @@ const Credentials = (props) => {
               align="center"
               style={{ width: "100%", margin: 10, fontWeight: "bold" }}
             >
+              <span
+                style={{
+                  color: "#ff1744",
+                  marginRight: 7,
+                }}
+              >
+                *
+              </span>
               Google My Business Login Credentials
             </Typography>
             <div>
@@ -221,12 +237,14 @@ const Credentials = (props) => {
       <div
         style={{
           display: "flex",
+          height: window.screen.availHeight / 2,
         }}
       >
         <div
           style={{
             display: "flex",
             transform: "rotateZ(180deg)",
+            justifyContent: "flex-end",
           }}
           onClick={() => {
             SET_SECTION(Actionlist.SECTION_9, state);
@@ -244,6 +262,7 @@ const Credentials = (props) => {
             display: "flex",
             justifyContent: "flex-end",
             width: "100%",
+            alignItems: "flex-end",
           }}
           onClick={() => {
             sectionschema

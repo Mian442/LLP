@@ -18,6 +18,30 @@ const Section6 = (props) => {
     setState(val);
   };
 
+  const missing = (T, arr, s) => {
+    let a = [];
+    for (var i = s; i < T + 1; i++) {
+      let b = { number: i, hit: false };
+      a.push(b);
+    }
+    console.log(a);
+    for (let i = 0; i < a.length; i++) {
+      for (let j = 0; j < arr.length; j++) {
+        if (a[i].number === arr[j]) {
+          a[i].hit = true;
+          break;
+        }
+      }
+    }
+
+    for (let i = 0; i < a.length; i++) {
+      if (a[i].hit !== true) {
+        return a[i];
+      }
+    }
+    return { hit: true };
+  };
+
   const [auth, setAuth] = useState();
   useEffect(() => {
     firebase.default.auth().onAuthStateChanged((user) => {
@@ -29,30 +53,19 @@ const Section6 = (props) => {
     });
     if (GET_SECTION(Actionlist.SECTION_6) !== null) {
       setState(GET_SECTION(Actionlist.SECTION_6));
-      let l = Object.keys(GET_SECTION(Actionlist.SECTION_6)).length;
-      if (l > 9) {
-        let a = GET_SECTION(Actionlist.SECTION_6);
-        let b = [];
-        let c = [];
-        let d = 0;
-        for (var obj in a) {
-          if (d < 10) {
-            b.push(obj);
-          } else {
-            c.push(obj);
-          }
-          d = d + 1;
+      let l = GET_SECTION(Actionlist.SECTION_6);
+      console.log(l);
+      let b = [];
+      let c = [];
+      for (var obj in l) {
+        if (l[obj].index < 10) {
+          b.push(l[obj].index);
+        } else {
+          c.push(l[obj].index);
         }
-        setTotal(b);
-        setTotal2(c);
-      } else {
-        let a = GET_SECTION(Actionlist.SECTION_6);
-        let b = [];
-        for (var obj2 in a) {
-          b.push(obj2);
-        }
-        setTotal(b);
       }
+      setTotal(b);
+      setTotal2(c);
     }
   }, [props]);
   return (
@@ -137,7 +150,10 @@ const Section6 = (props) => {
                   aria-label="upload picture"
                   component="span"
                   onClick={() => {
-                    setTotal(total.filter((val, i) => i !== index));
+                    setTotal(total.filter((val) => val !== item));
+                    let i = { ...state };
+                    delete i[`keywords${item}`];
+                    setState(i);
                   }}
                 >
                   <Delete
@@ -151,22 +167,25 @@ const Section6 = (props) => {
                   style={{ marginRight: 7 }}
                   variant="filled"
                   size="small"
-                  value={state[`keywords${index}`].in1}
+                  value={
+                    state[`keywords${state[`keywords${item}`]?.index}`]?.in1
+                  }
                   onChange={handleChange}
                   inputProps={{
-                    name: "keywords" + index + ".in1",
-                    id: "outlined-Primary-" + index + "-native-simple-1",
+                    name: "keywords" + item + ".in1",
+                    id: "outlined-Primary-" + item + "-native-simple-1",
                   }}
                 />
                 <TextField
                   variant="filled"
                   size="small"
-                  value={state?.[`keywords${index}`]?.in2}
+                  value={
+                    state[`keywords${state[`keywords${item}`]?.index}`]?.in2
+                  }
                   onChange={handleChange}
                   inputProps={{
-                    name: "keywords" + index + ".in2",
-                    id:
-                      "outlined-Primary-Category" + index + "-native-simple-2",
+                    name: "keywords" + item + ".in2",
+                    id: "outlined-Primary-Category" + item + "-native-simple-2",
                   }}
                 />
               </div>
@@ -198,7 +217,10 @@ const Section6 = (props) => {
                   aria-label="upload picture"
                   component="span"
                   onClick={() => {
-                    setTotal2(total2.filter((val, i) => i !== index));
+                    setTotal2(total2.filter((val) => val !== item));
+                    let i = { ...state };
+                    delete i[`keywords${item}`];
+                    setState(i);
                   }}
                 >
                   <Delete
@@ -212,29 +234,25 @@ const Section6 = (props) => {
                   style={{ marginRight: 7 }}
                   variant="filled"
                   size="small"
-                  value={state?.[`keywords${index + total.length}`]?.in1}
+                  value={
+                    state[`keywords${state[`keywords${item}`]?.index}`]?.in1
+                  }
                   onChange={handleChange}
                   inputProps={{
-                    name: `keywords${index + total.length}.in1`,
-                    id:
-                      "outlined-Primary-Category" +
-                      index +
-                      total2.length +
-                      "-native-simple",
+                    name: `keywords${item}.in1`,
+                    id: "outlined-Primary-Category" + item + "-native-simple",
                   }}
                 />
                 <TextField
                   variant="filled"
                   size="small"
-                  value={state?.[`keywords${index + total.length}`]?.in2}
+                  value={
+                    state[`keywords${state[`keywords${item}`]?.index}`]?.in2
+                  }
                   onChange={handleChange}
                   inputProps={{
-                    name: `keywords${index + total.length}.in2`,
-                    id:
-                      "outlined-Primary-Category" +
-                      index +
-                      total2.length +
-                      "-native-simple2",
+                    name: `keywords${item}.in2`,
+                    id: "outlined-Primary-Category" + item + "-native-simple2",
                   }}
                 />
               </div>
@@ -249,23 +267,73 @@ const Section6 = (props) => {
           alignItems: "center",
         }}
         onClick={() => {
-          let K = total.length;
-          let k2 = total2.length;
-          if (K + k2 < 20) {
-            K < 10
+          let K =
+            total[total.length - 1] !== undefined
+              ? total[total.length - 1]
+              : -1;
+          let k2 =
+            total2[total2.length - 1] !== undefined
+              ? total2[total2.length - 1]
+              : 9;
+          let T = total.length;
+          let T2 = total2.length;
+          console.log(K, k2, total, total2);
+          if (!missing(K, total, 0).hit && K !== -1) {
+            console.log("K");
+            let miss = missing(K, total, 0);
+            setState({
+              ...state,
+              [`keywords${miss.number}`]: {
+                in1: "",
+                in2: "",
+                index: miss.number,
+              },
+            });
+            let d = [...total];
+            d.push(miss.number);
+            d.sort();
+            setTotal(d);
+          } else if (!missing(k2, total2, 10).hit && k2 !== 9) {
+            console.log("k2", missing(k2, total, 10), k2, total2);
+            let miss = missing(k2, total2, 10);
+            setState({
+              ...state,
+              [`keywords${miss.number}`]: {
+                in1: "",
+                in2: "",
+                index: miss.number,
+              },
+            });
+            let d = [...total2];
+            d.push(miss.number);
+            d.sort();
+            setTotal2(d);
+          } else if (T + T2 < 20) {
+            console.log("N");
+            K <= 8
               ? setState({
                   ...state,
-                  [`keywords${K}`]: { in1: "", in2: "" },
+                  [`keywords${K + 1}`]: { in1: "", in2: "", index: K + 1 },
                 })
               : setState({
                   ...state,
-                  [`keywords${K + k2}`]: { in1: "", in2: "" },
+                  [`keywords${k2 + 1}`]: {
+                    in1: "",
+                    in2: "",
+                    index: k2 + 1,
+                  },
                 });
-            K <= 9
-              ? setTotal([...total, K + 1])
-              : setTotal2([...total2, k2 + 1]);
-            console.log(total, total2);
+            if (K <= 8) {
+              K = K + 1;
+              let i = [...total];
+              i.push(K);
+              setTotal(i);
+            } else {
+              k2 = k2 + 1;
+              setTotal2([...total2, k2]);
+            }
           }
+          console.log(K, k2, total, total2);
         }}
       >
         <IconButton
@@ -296,6 +364,7 @@ const Section6 = (props) => {
             transform: "rotateZ(180deg)",
           }}
           onClick={() => {
+            console.log(state);
             SET_SECTION(Actionlist.SECTION_6, state);
             props.history.push("/cover");
           }}
