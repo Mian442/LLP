@@ -38,21 +38,21 @@ const Section4 = (props) => {
     primary_category: Yup.string().required(),
     business_name: Yup.string().required(),
     primary_website: Yup.string().required(),
-    alternate_website: Yup.string().required(),
+    alternate_website: Yup.string(),
     country: Yup.string().required(),
     street_address: Yup.string().required(),
-    suite: Yup.string().required(),
+    suite: Yup.string(),
     city: Yup.string().required(),
     state: Yup.string().required(),
     zip: Yup.number().required(),
     main_phone: Yup.string().required(),
-    alternate_phone: Yup.string().required(),
+    alternate_phone: Yup.string(),
     business_description: Yup.string().required(),
     business_owner: Yup.string().required(),
     business_email: Yup.string().required().email(),
-    business_fax: Yup.string().required(),
+    business_fax: Yup.string(),
     year_established: Yup.number(),
-    payment_type: Yup.string(),
+    payment_type: Yup.string().required(),
   });
 
   const [auth, setAuth] = useState();
@@ -191,14 +191,6 @@ const Section4 = (props) => {
       label: (
         <Typography style={{ fontWeight: "bold" }}>
           Alternate Website
-          <span
-            style={{
-              color: "#ff1744",
-              marginRight: 30,
-            }}
-          >
-            *
-          </span>
         </Typography>
       ),
       component: (
@@ -272,19 +264,7 @@ const Section4 = (props) => {
       ),
     },
     {
-      label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Suite
-          <span
-            style={{
-              color: "#ff1744",
-              marginRight: 30,
-            }}
-          >
-            *
-          </span>
-        </Typography>
-      ),
+      label: <Typography style={{ fontWeight: "bold" }}>Suite</Typography>,
       component: (
         <TextField
           variant="filled"
@@ -413,17 +393,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Alternate Phone
-          <span
-            style={{
-              color: "#ff1744",
-              marginRight: 30,
-            }}
-          >
-            *
-          </span>
-        </Typography>
+        <Typography style={{ fontWeight: "bold" }}>Alternate Phone</Typography>
       ),
       component: (
         <TextField
@@ -528,17 +498,7 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Business Fax
-          <span
-            style={{
-              color: "#ff1744",
-              marginRight: 7,
-            }}
-          >
-            *
-          </span>
-        </Typography>
+        <Typography style={{ fontWeight: "bold" }}>Business Fax</Typography>
       ),
       component: (
         <TextField
@@ -574,7 +534,17 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>Payment Types</Typography>
+        <Typography style={{ fontWeight: "bold" }}>
+          Payment Types
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 30,
+            }}
+          >
+            *
+          </span>
+        </Typography>
       ),
       component: (
         <div
