@@ -164,8 +164,6 @@ const Section7 = (props) => {
               <option aria-label="None" value="United State">
                 United States
               </option>
-              <option value="United Kingdom">United Kingdom</option>
-              <option value="Australia">Australia</option>
               <option value="Canada">Canada</option>
             </Select>
           </FormControl>

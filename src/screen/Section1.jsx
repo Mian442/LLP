@@ -375,7 +375,7 @@ const PaymentScreen = (props) => {
             }}
           />
           <Typography variant="subtitle2" style={{ color: "#bdbdbd" }}>
-            +1 (xxx) xxx-xxxx
+            (xxx) xxx-xxxx
           </Typography>
         </div>
       ),

@@ -40,11 +40,11 @@ const PaymentInformation = (props) => {
     business_name: Yup.string().required(),
     business_email: Yup.string().email().required(),
     business_phone: Yup.string().required(),
-    business_address: Yup.string(),
+    business_address: Yup.string().required(),
     suite: Yup.string(),
-    city: Yup.string(),
+    city: Yup.string().required(),
     zip: Yup.number().required(),
-    state: Yup.string(),
+    state: Yup.string().required(),
   });
 
   useEffect(() => {
@@ -175,7 +175,17 @@ const PaymentInformation = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>Business Address</Typography>
+        <Typography style={{ fontWeight: "bold" }}>
+          Business Address
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 30,
+            }}
+          >
+            *
+          </span>
+        </Typography>
       ),
       component: (
         <TextField
@@ -208,7 +218,19 @@ const PaymentInformation = (props) => {
       ),
     },
     {
-      label: <Typography style={{ fontWeight: "bold" }}>City</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>
+          City
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 30,
+            }}
+          >
+            *
+          </span>
+        </Typography>
+      ),
       component: (
         <TextField
           variant="filled"
@@ -224,7 +246,19 @@ const PaymentInformation = (props) => {
       ),
     },
     {
-      label: <Typography style={{ fontWeight: "bold" }}>State</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>
+          State
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 30,
+            }}
+          >
+            *
+          </span>
+        </Typography>
+      ),
       component: (
         <TextField
           variant="filled"
@@ -240,7 +274,19 @@ const PaymentInformation = (props) => {
       ),
     },
     {
-      label: <Typography style={{ fontWeight: "bold" }}>Zip</Typography>,
+      label: (
+        <Typography style={{ fontWeight: "bold" }}>
+          Zip
+          <span
+            style={{
+              color: "#ff1744",
+              marginRight: 30,
+            }}
+          >
+            *
+          </span>
+        </Typography>
+      ),
       component: (
         <TextField
           variant="filled"

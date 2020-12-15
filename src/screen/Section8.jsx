@@ -310,10 +310,13 @@ const Section8 = (props) => {
               />
             </FormGroup>
           </FormControl>
-          <Typography variant="h6" style={{ fontWeight: "bold" }}>
+          <Typography
+            variant="h6"
+            style={{ fontWeight: "bold", marginTop: 20 }}
+          >
             Special/Holidays Hours
           </Typography>
-          <Typography variant="body1">
+          <Typography variant="body1" style={{ marginTop: 20 }}>
             Only Selected dates will be updated
           </Typography>
           {list.map((item, i) => (
@@ -415,6 +418,7 @@ const Section8 = (props) => {
               color="primary"
               aria-label="upload picture"
               component="span"
+              style={{ marginTop: 20 }}
               onClick={() =>
                 setList([
                   ...list,
