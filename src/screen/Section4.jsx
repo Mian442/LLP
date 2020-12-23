@@ -105,16 +105,16 @@ const Section4 = (props) => {
   const form = [
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Primary Category (Google)
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
           </span>
+          Primary Category (Google)
         </Typography>
       ),
       component: (
@@ -133,16 +133,16 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Business Name
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
-          </span>
+          </span>{" "}
+          Business Name
         </Typography>
       ),
       component: (
@@ -161,16 +161,16 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Primary Website
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
           </span>
+          Primary Website
         </Typography>
       ),
       component: (
@@ -209,16 +209,16 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Country
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
-          </span>
+          </span>{" "}
+          Country
         </Typography>
       ),
       component: (
@@ -237,16 +237,16 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Street Address
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
           </span>
+          Street Address
         </Typography>
       ),
       component: (
@@ -281,16 +281,16 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          City
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
-          </span>
+          </span>{" "}
+          City
         </Typography>
       ),
       component: (
@@ -309,16 +309,16 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          State
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
           </span>
+          State
         </Typography>
       ),
       component: (
@@ -337,16 +337,16 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Zip
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
-          </span>
+          </span>{" "}
+          Zip
         </Typography>
       ),
       component: (
@@ -365,16 +365,16 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Main Phone
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
-          </span>
+          </span>{" "}
+          Main Phone
         </Typography>
       ),
       component: (
@@ -414,16 +414,16 @@ const Section4 = (props) => {
   const user = [
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Business Description
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
-          </span>
+          </span>{" "}
+          Business Description
         </Typography>
       ),
       component: (
@@ -442,16 +442,16 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Business Owner
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
-          </span>
+          </span>{" "}
+          Business Owner
         </Typography>
       ),
       component: (
@@ -470,16 +470,16 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Business Email
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
-          </span>
+          </span>{" "}
+          Business Email
         </Typography>
       ),
       component: (
@@ -534,16 +534,16 @@ const Section4 = (props) => {
     },
     {
       label: (
-        <Typography style={{ fontWeight: "bold" }}>
-          Payment Types
+        <Typography style={{ fontWeight: "bold", marginRight: 3 }}>
           <span
             style={{
               color: "#ff1744",
-              marginRight: 30,
+              marginRight: 3,
             }}
           >
             *
-          </span>
+          </span>{" "}
+          Payment Types
         </Typography>
       ),
       component: (

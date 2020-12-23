@@ -356,6 +356,7 @@ const Section6 = (props) => {
       <div
         style={{
           display: "flex",
+          justifyContent: "space-evenly",
           height:
             total.length > 7 && total2.length > 7
               ? "unset"
@@ -386,9 +387,7 @@ const Section6 = (props) => {
         <div
           style={{
             display: "flex",
-            justifyContent: "flex-end",
-            width: "100%",
-            alignItems: "flex-end",
+            marginLeft: 30,
           }}
           onClick={() => {
             if (total.length > 0 && total.length + total2.length < 20) {
